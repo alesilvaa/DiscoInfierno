@@ -12,7 +12,8 @@ public class Player : MonoBehaviour
     [Header("UI")]
     [SerializeField] Slider healthSlider;
     [SerializeField] bool hideSliderHandle = true;
-    [SerializeField] bool billboardHealthBar = true;
+    [SerializeField] bool detachHealthBarFromPlayer = true;
+    [SerializeField] Vector3 healthBarWorldOffset = new Vector3(0f, 3.7f, 0f);
     [SerializeField] Transform healthBarRoot;
 
     [Header("Impact Damage")]
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
 
     float lastDamageTime = -999f;
     Camera billboardCamera;
+    bool healthBarDetached;
 
     public bool IsAlive => isAlive;
     public bool CanSling => isAlive && !blocked;
@@ -37,23 +39,52 @@ public class Player : MonoBehaviour
     {
         ResolveHealthUi();
         ConfigureHealthSlider();
+        DetachHealthBar();
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
         RefreshHealthUi();
     }
 
     void LateUpdate()
     {
-        if (!billboardHealthBar || healthBarRoot == null)
+        UpdateHealthBarTransform();
+    }
+
+    void OnDestroy()
+    {
+        if (healthBarDetached && healthBarRoot != null)
+            Destroy(healthBarRoot.gameObject);
+    }
+
+    void DetachHealthBar()
+    {
+        if (!detachHealthBarFromPlayer || healthBarRoot == null)
             return;
+
+        // Keep current world height as offset if it was authored in the hierarchy.
+        healthBarWorldOffset = healthBarRoot.position - transform.position;
+        healthBarRoot.SetParent(null, true);
+        healthBarDetached = true;
+        UpdateHealthBarTransform();
+    }
+
+    void UpdateHealthBarTransform()
+    {
+        if (healthBarRoot == null)
+            return;
+
+        healthBarRoot.position = transform.position + healthBarWorldOffset;
 
         if (billboardCamera == null)
             billboardCamera = Camera.main;
         if (billboardCamera == null)
             return;
 
-        healthBarRoot.rotation = Quaternion.LookRotation(
-            healthBarRoot.position - billboardCamera.transform.position,
-            Vector3.up);
+        // Face the camera in world space — never inherits disc rotation.
+        Vector3 toCamera = healthBarRoot.position - billboardCamera.transform.position;
+        if (toCamera.sqrMagnitude < 0.0001f)
+            return;
+
+        healthBarRoot.rotation = Quaternion.LookRotation(toCamera, Vector3.up);
     }
 
     void OnCollisionEnter(Collision collision)
