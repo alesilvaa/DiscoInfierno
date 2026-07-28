@@ -1,0 +1,3276 @@
+fileFormatVersion: 2
+guid: ddef4fffe766944feb00f3b09d37a80c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5462909309667091385
+    second: Azulejo_0
+  - first:
+      213: 5099876755511342697
+    second: Azulejo_1
+  - first:
+      213: -8162160191472837766
+    second: Azulejo_2
+  - first:
+      213: 6806988070094062394
+    second: Azulejo_3
+  - first:
+      213: 7783943875056466157
+    second: Azulejo_4
+  - first:
+      213: -4184280594606934457
+    second: Azulejo_5
+  - first:
+      213: 8561147671459099087
+    second: Azulejo_6
+  - first:
+      213: -922530869112273839
+    second: Azulejo_7
+  - first:
+      213: -4166609098100374280
+    second: Azulejo_8
+  - first:
+      213: 9161243395170521108
+    second: Azulejo_9
+  - first:
+      213: -1803890067684697842
+    second: Azulejo_10
+  - first:
+      213: -2586540825926257805
+    second: Azulejo_11
+  - first:
+      213: 7875525810046838898
+    second: Azulejo_12
+  - first:
+      213: 4898353005759128921
+    second: Azulejo_13
+  - first:
+      213: -4057952623019026375
+    second: Azulejo_14
+  - first:
+      213: -3005465036930288749
+    second: Azulejo_15
+  - first:
+      213: 1430773099675731892
+    second: Azulejo_16
+  - first:
+      213: 7343092835759377646
+    second: Azulejo_17
+  - first:
+      213: -1388797363704248917
+    second: Azulejo_18
+  - first:
+      213: -5675095188634187794
+    second: Azulejo_19
+  - first:
+      213: 2828158760926179394
+    second: Azulejo_20
+  - first:
+      213: 1179373069130259737
+    second: Azulejo_21
+  - first:
+      213: -7260198027101072168
+    second: Azulejo_22
+  - first:
+      213: -1276348631923998439
+    second: Azulejo_23
+  - first:
+      213: 4215021665568701456
+    second: Azulejo_24
+  - first:
+      213: 2679748798702719283
+    second: Azulejo_25
+  - first:
+      213: -991250800056716967
+    second: Azulejo_26
+  - first:
+      213: 5466879919655656418
+    second: Azulejo_27
+  - first:
+      213: 311151054184735794
+    second: Azulejo_28
+  - first:
+      213: -2955877084688818914
+    second: Azulejo_29
+  - first:
+      213: 3085294478709394380
+    second: Azulejo_30
+  - first:
+      213: -4536368056086539309
+    second: Azulejo_31
+  - first:
+      213: -5823672200690544991
+    second: Azulejo_32
+  - first:
+      213: 1318527428973957441
+    second: Azulejo_33
+  - first:
+      213: 2403058928933354793
+    second: Azulejo_34
+  - first:
+      213: -4790995225752070226
+    second: Azulejo_35
+  - first:
+      213: 2886322862828559512
+    second: Azulejo_36
+  - first:
+      213: -4478205463896131542
+    second: Azulejo_37
+  - first:
+      213: 5281620064356484576
+    second: Azulejo_38
+  - first:
+      213: -7789757448175001073
+    second: Azulejo_39
+  - first:
+      213: -1420919068831132410
+    second: Azulejo_40
+  - first:
+      213: -390378110282603455
+    second: Azulejo_41
+  - first:
+      213: -8667140458836944766
+    second: Azulejo_42
+  - first:
+      213: 4575378370956211910
+    second: Azulejo_43
+  - first:
+      213: 594894126756237117
+    second: Azulejo_44
+  - first:
+      213: 5972555979720824773
+    second: Azulejo_45
+  - first:
+      213: -5571882380586339254
+    second: Azulejo_46
+  - first:
+      213: 2021137382017120707
+    second: Azulejo_47
+  - first:
+      213: -3462450040394100260
+    second: Azulejo_48
+  - first:
+      213: -182747971513852771
+    second: Azulejo_49
+  - first:
+      213: -1549334935651637957
+    second: Azulejo_50
+  - first:
+      213: -6366569759761836406
+    second: Azulejo_51
+  - first:
+      213: -6750204443916692712
+    second: Azulejo_52
+  - first:
+      213: 873500423170340252
+    second: Azulejo_53
+  - first:
+      213: 1119431418955710910
+    second: Azulejo_54
+  - first:
+      213: 2690166896068527838
+    second: Azulejo_55
+  - first:
+      213: 3533574139549945612
+    second: Azulejo_56
+  - first:
+      213: 7362343292405707604
+    second: Azulejo_57
+  - first:
+      213: -1141972292161304453
+    second: Azulejo_58
+  - first:
+      213: -830201509920997028
+    second: Azulejo_59
+  - first:
+      213: 1268625298470524900
+    second: Azulejo_60
+  - first:
+      213: -4649947954988322815
+    second: Azulejo_61
+  - first:
+      213: -3424225868490754268
+    second: Azulejo_62
+  - first:
+      213: -7813006126815588759
+    second: Azulejo_63
+  - first:
+      213: -6943018429449614210
+    second: Azulejo_64
+  - first:
+      213: 8271088663953536956
+    second: Azulejo_65
+  - first:
+      213: -5526949909276910854
+    second: Azulejo_66
+  - first:
+      213: 9152094645309781663
+    second: Azulejo_67
+  - first:
+      213: -2232196168422031431
+    second: Azulejo_68
+  - first:
+      213: 8690845142018260018
+    second: Azulejo_69
+  - first:
+      213: 294768722764336993
+    second: Azulejo_70
+  - first:
+      213: 256502148720517836
+    second: Azulejo_71
+  - first:
+      213: -9095131783857679614
+    second: Azulejo_72
+  - first:
+      213: 710173510810037398
+    second: Azulejo_73
+  - first:
+      213: -4525472397652519038
+    second: Azulejo_74
+  - first:
+      213: 4493408407529896768
+    second: Azulejo_75
+  - first:
+      213: -652390871062911606
+    second: Azulejo_76
+  - first:
+      213: -6308770721864714015
+    second: Azulejo_77
+  - first:
+      213: 208658273708251288
+    second: Azulejo_78
+  - first:
+      213: 2365978124421886547
+    second: Azulejo_79
+  - first:
+      213: 3610045497175022076
+    second: Azulejo_80
+  - first:
+      213: 5481482694583339666
+    second: Azulejo_81
+  - first:
+      213: 5244041049103087418
+    second: Azulejo_82
+  - first:
+      213: -2904255038142971656
+    second: Azulejo_83
+  - first:
+      213: 4415977788168580622
+    second: Azulejo_84
+  - first:
+      213: -7802288008613780724
+    second: Azulejo_85
+  - first:
+      213: -4463625013524830313
+    second: Azulejo_86
+  - first:
+      213: 131417687396041122
+    second: Azulejo_87
+  - first:
+      213: 2392481489079563460
+    second: Azulejo_88
+  - first:
+      213: -1557477933508396056
+    second: Azulejo_89
+  - first:
+      213: 962647577362367512
+    second: Azulejo_90
+  - first:
+      213: -8702796169223258332
+    second: Azulejo_91
+  - first:
+      213: -1727824921835949474
+    second: Azulejo_92
+  - first:
+      213: -6405398701708628534
+    second: Azulejo_93
+  - first:
+      213: 4466962030794307961
+    second: Azulejo_94
+  - first:
+      213: 9134643912826282768
+    second: Azulejo_95
+  - first:
+      213: 5565081479087601997
+    second: Azulejo_96
+  - first:
+      213: 5317546612721387881
+    second: Azulejo_97
+  - first:
+      213: 5837231953550721475
+    second: Azulejo_98
+  - first:
+      213: -5609911562586742278
+    second: Azulejo_99
+  - first:
+      213: -5068548807111023041
+    second: Azulejo_100
+  - first:
+      213: -5895068327593134350
+    second: Azulejo_101
+  - first:
+      213: 3744830463555139019
+    second: Azulejo_102
+  - first:
+      213: 7777683409699191219
+    second: Azulejo_103
+  - first:
+      213: 4314711569619202780
+    second: Azulejo_104
+  - first:
+      213: 5516728394019670519
+    second: Azulejo_105
+  - first:
+      213: -4782404219778710258
+    second: Azulejo_106
+  - first:
+      213: 7873919705336760385
+    second: Azulejo_107
+  - first:
+      213: 7078926748487549131
+    second: Azulejo_108
+  - first:
+      213: 7240761251145304461
+    second: Azulejo_109
+  - first:
+      213: 7701045736862442526
+    second: Azulejo_110
+  - first:
+      213: 3973807703569271786
+    second: Azulejo_111
+  - first:
+      213: -3055764826801163976
+    second: Azulejo_112
+  - first:
+      213: 3856372364608346305
+    second: Azulejo_113
+  - first:
+      213: -8767544266062022224
+    second: Azulejo_114
+  - first:
+      213: -6843165038641747796
+    second: Azulejo_115
+  - first:
+      213: -4219781560435582417
+    second: Azulejo_116
+  - first:
+      213: 2340099451421150844
+    second: Azulejo_117
+  - first:
+      213: 6055161197785149753
+    second: Azulejo_118
+  - first:
+      213: -8437470836294754278
+    second: Azulejo_119
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Azulejo_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2930
+        width: 301
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b3a1eac21720db40800000000000000
+      internalID: 5462909309667091385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_1
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 2930
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 966768a83e666c640800000000000000
+      internalID: 5099876755511342697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_2
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 2930
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7b5d630d8e2abe80800000000000000
+      internalID: -8162160191472837766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_3
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 2930
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a334744b597477e50800000000000000
+      internalID: 6806988070094062394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_4
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 2930
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de8715896bf160c60800000000000000
+      internalID: 7783943875056466157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_5
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 2930
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 746b4ede7f27ee5c0800000000000000
+      internalID: -4184280594606934457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_6
+      rect:
+        serializedVersion: 2
+        x: 1945
+        y: 2930
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc17bf2c27e4fc670800000000000000
+      internalID: 8561147671459099087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_7
+      rect:
+        serializedVersion: 2
+        x: 2270
+        y: 2930
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1540b34ff038233f0800000000000000
+      internalID: -922530869112273839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_8
+      rect:
+        serializedVersion: 2
+        x: 2594
+        y: 2930
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f401d5d91b3d26c0800000000000000
+      internalID: -4166609098100374280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_9
+      rect:
+        serializedVersion: 2
+        x: 2919
+        y: 2930
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 410580e5456432f70800000000000000
+      internalID: 9161243395170521108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_10
+      rect:
+        serializedVersion: 2
+        x: 3243
+        y: 2930
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e095cc57a8b47f6e0800000000000000
+      internalID: -1803890067684697842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_11
+      rect:
+        serializedVersion: 2
+        x: 3564
+        y: 2930
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 373be99a2d2ca1cd0800000000000000
+      internalID: -2586540825926257805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2605
+        width: 301
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27823477ffc7b4d60800000000000000
+      internalID: 7875525810046838898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_13
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 2605
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9556dbc2b127af340800000000000000
+      internalID: 4898353005759128921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_14
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 2605
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 938169dd6914fa7c0800000000000000
+      internalID: -4057952623019026375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_15
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 2605
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 393f9e8f8717a46d0800000000000000
+      internalID: -3005465036930288749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_16
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 2605
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b74b58bd802bd310800000000000000
+      internalID: 1430773099675731892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_17
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 2605
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eec472c5708e7e560800000000000000
+      internalID: 7343092835759377646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_18
+      rect:
+        serializedVersion: 2
+        x: 1945
+        y: 2605
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba5c867e7200abce0800000000000000
+      internalID: -1388797363704248917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_19
+      rect:
+        serializedVersion: 2
+        x: 2270
+        y: 2605
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee74eee6ef20e31b0800000000000000
+      internalID: -5675095188634187794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_20
+      rect:
+        serializedVersion: 2
+        x: 2594
+        y: 2605
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 240f969a863af3720800000000000000
+      internalID: 2828158760926179394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_21
+      rect:
+        serializedVersion: 2
+        x: 2919
+        y: 2605
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91ddb2bce89fd5010800000000000000
+      internalID: 1179373069130259737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_22
+      rect:
+        serializedVersion: 2
+        x: 3243
+        y: 2605
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d416ab4c589e3b90800000000000000
+      internalID: -7260198027101072168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_23
+      rect:
+        serializedVersion: 2
+        x: 3564
+        y: 2605
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9114d908eaf794ee0800000000000000
+      internalID: -1276348631923998439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2279
+        width: 301
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01c3cc86fd3ce7a30800000000000000
+      internalID: 4215021665568701456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_25
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 2279
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33194f1a551603520800000000000000
+      internalID: 2679748798702719283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_26
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 2279
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9513c4336ae5e32f0800000000000000
+      internalID: -991250800056716967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_27
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 2279
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2eb9ac872524edb40800000000000000
+      internalID: 5466879919655656418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_28
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 2279
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2346b283c3e615400800000000000000
+      internalID: 311151054184735794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_29
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 2279
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1dd76fc37d9af6d0800000000000000
+      internalID: -2955877084688818914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_30
+      rect:
+        serializedVersion: 2
+        x: 1945
+        y: 2279
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccb82f65bfa21da20800000000000000
+      internalID: 3085294478709394380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_31
+      rect:
+        serializedVersion: 2
+        x: 2270
+        y: 2279
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d35886a9459b01c0800000000000000
+      internalID: -4536368056086539309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_32
+      rect:
+        serializedVersion: 2
+        x: 2594
+        y: 2279
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1aec5851df82e2fa0800000000000000
+      internalID: -5823672200690544991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_33
+      rect:
+        serializedVersion: 2
+        x: 2919
+        y: 2279
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1411a96f5b95c4210800000000000000
+      internalID: 1318527428973957441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_34
+      rect:
+        serializedVersion: 2
+        x: 3243
+        y: 2279
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92d37692d51695120800000000000000
+      internalID: 2403058928933354793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_35
+      rect:
+        serializedVersion: 2
+        x: 3564
+        y: 2279
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea79478d937f28db0800000000000000
+      internalID: -4790995225752070226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1953
+        width: 301
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89c1cf1f9574e0820800000000000000
+      internalID: 2886322862828559512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_37
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 1953
+        width: 303
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a28f14d6bd73ad1c0800000000000000
+      internalID: -4478205463896131542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_38
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 1953
+        width: 303
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e54b8e17751c4940800000000000000
+      internalID: 5281620064356484576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_39
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 1953
+        width: 303
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f02631f6fd835e390800000000000000
+      internalID: -7789757448175001073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_40
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 1953
+        width: 303
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 605ddbf92a1e74ce0800000000000000
+      internalID: -1420919068831132410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_41
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 1953
+        width: 302
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14464805d29159af0800000000000000
+      internalID: -390378110282603455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_42
+      rect:
+        serializedVersion: 2
+        x: 1945
+        y: 1953
+        width: 303
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2889b945ca128b780800000000000000
+      internalID: -8667140458836944766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_43
+      rect:
+        serializedVersion: 2
+        x: 2270
+        y: 1953
+        width: 302
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c6b9d113620f7f30800000000000000
+      internalID: 4575378370956211910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_44
+      rect:
+        serializedVersion: 2
+        x: 2594
+        y: 1953
+        width: 303
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3f85407e0d714800800000000000000
+      internalID: 594894126756237117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_45
+      rect:
+        serializedVersion: 2
+        x: 2919
+        y: 1953
+        width: 302
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c715640508c2e250800000000000000
+      internalID: 5972555979720824773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_46
+      rect:
+        serializedVersion: 2
+        x: 3243
+        y: 1953
+        width: 303
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a44b4e6fe72bca2b0800000000000000
+      internalID: -5571882380586339254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_47
+      rect:
+        serializedVersion: 2
+        x: 3564
+        y: 1953
+        width: 302
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c9b4619db58c0c10800000000000000
+      internalID: 2021137382017120707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1628
+        width: 301
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd1d5c97808e2ffc0800000000000000
+      internalID: -3462450040394100260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_49
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 1628
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9c5e7a20bfb67df0800000000000000
+      internalID: -182747971513852771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_50
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 1628
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b35a162b518af7ae0800000000000000
+      internalID: -1549334935651637957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_51
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 1628
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a86d6a7f88665a7a0800000000000000
+      internalID: -6366569759761836406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_52
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 1628
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 813151782d47252a0800000000000000
+      internalID: -6750204443916692712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_53
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 1628
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c95b832c10c4f1c00800000000000000
+      internalID: 873500423170340252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_54
+      rect:
+        serializedVersion: 2
+        x: 1945
+        y: 1628
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb1444dc1f4098f00800000000000000
+      internalID: 1119431418955710910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_55
+      rect:
+        serializedVersion: 2
+        x: 2270
+        y: 1628
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed60ea2f984655520800000000000000
+      internalID: 2690166896068527838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_56
+      rect:
+        serializedVersion: 2
+        x: 2594
+        y: 1628
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0f816f45f6c90130800000000000000
+      internalID: 3533574139549945612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_57
+      rect:
+        serializedVersion: 2
+        x: 2919
+        y: 1628
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4537252973c4c2660800000000000000
+      internalID: 7362343292405707604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_58
+      rect:
+        serializedVersion: 2
+        x: 3243
+        y: 1628
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b78036e2046e620f0800000000000000
+      internalID: -1141972292161304453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_59
+      rect:
+        serializedVersion: 2
+        x: 3564
+        y: 1628
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c518a2510288a74f0800000000000000
+      internalID: -830201509920997028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1302
+        width: 301
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e7d86cccff0b9110800000000000000
+      internalID: 1268625298470524900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_61
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 1302
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 100fddea8f0187fb0800000000000000
+      internalID: -4649947954988322815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_62
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 1302
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 427b7e507b4ba70d0800000000000000
+      internalID: -3424225868490754268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_63
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 1302
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96ec43f9250a29390800000000000000
+      internalID: -7813006126815588759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_64
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 1302
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7c4aab268175af90800000000000000
+      internalID: -6943018429449614210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_65
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 1302
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb7f5b8515fc8c270800000000000000
+      internalID: 8271088663953536956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_66
+      rect:
+        serializedVersion: 2
+        x: 1945
+        y: 1302
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afa1c2e27545c43b0800000000000000
+      internalID: -5526949909276910854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_67
+      rect:
+        serializedVersion: 2
+        x: 2270
+        y: 1302
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f96b17c0795c20f70800000000000000
+      internalID: 9152094645309781663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_68
+      rect:
+        serializedVersion: 2
+        x: 2594
+        y: 1302
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bf77385965a501e0800000000000000
+      internalID: -2232196168422031431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_69
+      rect:
+        serializedVersion: 2
+        x: 2919
+        y: 1302
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23c7def4c951c9870800000000000000
+      internalID: 8690845142018260018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_70
+      rect:
+        serializedVersion: 2
+        x: 3243
+        y: 1302
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16f8343779a371400800000000000000
+      internalID: 294768722764336993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_71
+      rect:
+        serializedVersion: 2
+        x: 3564
+        y: 1302
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc26c9268574f8300800000000000000
+      internalID: 256502148720517836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 976
+        width: 301
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2035cc5a4d997c180800000000000000
+      internalID: -9095131783857679614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_73
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 976
+        width: 303
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69c69b0ab0b0bd900800000000000000
+      internalID: 710173510810037398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_74
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 976
+        width: 303
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2871611d4da4231c0800000000000000
+      internalID: -4525472397652519038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_75
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 976
+        width: 303
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04bb299b32bcb5e30800000000000000
+      internalID: 4493408407529896768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_76
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 976
+        width: 303
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a85669395fd32f6f0800000000000000
+      internalID: -652390871062911606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_77
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 976
+        width: 302
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e87ed9247eb278a0800000000000000
+      internalID: -6308770721864714015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_78
+      rect:
+        serializedVersion: 2
+        x: 1945
+        y: 976
+        width: 303
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89893db289d45e200800000000000000
+      internalID: 208658273708251288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_79
+      rect:
+        serializedVersion: 2
+        x: 2270
+        y: 976
+        width: 302
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 352f2849194a5d020800000000000000
+      internalID: 2365978124421886547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_80
+      rect:
+        serializedVersion: 2
+        x: 2594
+        y: 976
+        width: 303
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf99d1ab045791230800000000000000
+      internalID: 3610045497175022076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_81
+      rect:
+        serializedVersion: 2
+        x: 2919
+        y: 976
+        width: 302
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29a4715f773221c40800000000000000
+      internalID: 5481482694583339666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_82
+      rect:
+        serializedVersion: 2
+        x: 3243
+        y: 976
+        width: 303
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a373b5fcc8396c840800000000000000
+      internalID: 5244041049103087418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_83
+      rect:
+        serializedVersion: 2
+        x: 3564
+        y: 976
+        width: 302
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f089522e6302b7d0800000000000000
+      internalID: -2904255038142971656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 651
+        width: 301
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0eadc7c664b84d30800000000000000
+      internalID: 4415977788168580622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_85
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 651
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c03294bf464b8b390800000000000000
+      internalID: -7802288008613780724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_86
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 651
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 797ed4213b40e02c0800000000000000
+      internalID: -4463625013524830313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_87
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 651
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a1c17eb0b3e2d100800000000000000
+      internalID: 131417687396041122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_88
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 651
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c4f8480d3dc33120800000000000000
+      internalID: 2392481489079563460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_89
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 651
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ebf8b3421ab26ae0800000000000000
+      internalID: -1557477933508396056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_90
+      rect:
+        serializedVersion: 2
+        x: 1945
+        y: 651
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 814039c0fd20c5d00800000000000000
+      internalID: 962647577362367512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_91
+      rect:
+        serializedVersion: 2
+        x: 2270
+        y: 651
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42f31d45ef4793780800000000000000
+      internalID: -8702796169223258332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_92
+      rect:
+        serializedVersion: 2
+        x: 2594
+        y: 651
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e52b6e353688508e0800000000000000
+      internalID: -1727824921835949474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_93
+      rect:
+        serializedVersion: 2
+        x: 2919
+        y: 651
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acda8eb61d37b17a0800000000000000
+      internalID: -6405398701708628534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_94
+      rect:
+        serializedVersion: 2
+        x: 3243
+        y: 651
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 979f6aecc46ddfd30800000000000000
+      internalID: 4466962030794307961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_95
+      rect:
+        serializedVersion: 2
+        x: 3564
+        y: 651
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 013e1b5cd36c4ce70800000000000000
+      internalID: 9134643912826282768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_96
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 325
+        width: 301
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d493f13ce142b3d40800000000000000
+      internalID: 5565081479087601997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_97
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 325
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96907df7878bbc940800000000000000
+      internalID: 5317546612721387881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_98
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 325
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c143f6e883020150800000000000000
+      internalID: 5837231953550721475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_99
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 325
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af129aa08279522b0800000000000000
+      internalID: -5609911562586742278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_100
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 325
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f36ea69d6b5e8a9b0800000000000000
+      internalID: -5068548807111023041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_101
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 325
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f6b727e692803ea0800000000000000
+      internalID: -5895068327593134350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_102
+      rect:
+        serializedVersion: 2
+        x: 1945
+        y: 325
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc5f344377f48f330800000000000000
+      internalID: 3744830463555139019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_103
+      rect:
+        serializedVersion: 2
+        x: 2270
+        y: 325
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b9b19a6ad1efeb60800000000000000
+      internalID: 7777683409699191219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_104
+      rect:
+        serializedVersion: 2
+        x: 2594
+        y: 325
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd2bb6fef4fe0eb30800000000000000
+      internalID: 4314711569619202780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_105
+      rect:
+        serializedVersion: 2
+        x: 2919
+        y: 325
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f98ad7de3b5f8c40800000000000000
+      internalID: 5516728394019670519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_106
+      rect:
+        serializedVersion: 2
+        x: 3243
+        y: 325
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e05c2cb43bc71adb0800000000000000
+      internalID: -4782404219778710258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_107
+      rect:
+        serializedVersion: 2
+        x: 3564
+        y: 325
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 148cb821148c54d60800000000000000
+      internalID: 7873919705336760385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_108
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 301
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc08c9a3f566d3260800000000000000
+      internalID: 7078926748487549131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_109
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 0
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d89cde5aef95c7460800000000000000
+      internalID: 7240761251145304461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_110
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 0
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e14e8b8bb4c9fda60800000000000000
+      internalID: 7701045736862442526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_111
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 0
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aeb05f06d0dc52730800000000000000
+      internalID: 3973807703569271786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_112
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 0
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8313265841eb795d0800000000000000
+      internalID: -3055764826801163976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_113
+      rect:
+        serializedVersion: 2
+        x: 1619
+        y: 0
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c81d12db36948530800000000000000
+      internalID: 3856372364608346305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_114
+      rect:
+        serializedVersion: 2
+        x: 1944
+        y: 0
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b93cd441fc635680800000000000000
+      internalID: -8767544266062022224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_115
+      rect:
+        serializedVersion: 2
+        x: 2268
+        y: 0
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca8e26c67a13801a0800000000000000
+      internalID: -6843165038641747796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_116
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 0
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2a5e7437035075c0800000000000000
+      internalID: -4219781560435582417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_117
+      rect:
+        serializedVersion: 2
+        x: 2916
+        y: 0
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7e4b0d7d04b97020800000000000000
+      internalID: 2340099451421150844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_118
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 0
+        width: 303
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93176bb1701480450800000000000000
+      internalID: 6055161197785149753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Azulejo_119
+      rect:
+        serializedVersion: 2
+        x: 3564
+        y: 0
+        width: 302
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a10eeef5af418ea80800000000000000
+      internalID: -8437470836294754278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Azulejo_0: 5462909309667091385
+      Azulejo_1: 5099876755511342697
+      Azulejo_10: -1803890067684697842
+      Azulejo_100: -5068548807111023041
+      Azulejo_101: -5895068327593134350
+      Azulejo_102: 3744830463555139019
+      Azulejo_103: 7777683409699191219
+      Azulejo_104: 4314711569619202780
+      Azulejo_105: 5516728394019670519
+      Azulejo_106: -4782404219778710258
+      Azulejo_107: 7873919705336760385
+      Azulejo_108: 7078926748487549131
+      Azulejo_109: 7240761251145304461
+      Azulejo_11: -2586540825926257805
+      Azulejo_110: 7701045736862442526
+      Azulejo_111: 3973807703569271786
+      Azulejo_112: -3055764826801163976
+      Azulejo_113: 3856372364608346305
+      Azulejo_114: -8767544266062022224
+      Azulejo_115: -6843165038641747796
+      Azulejo_116: -4219781560435582417
+      Azulejo_117: 2340099451421150844
+      Azulejo_118: 6055161197785149753
+      Azulejo_119: -8437470836294754278
+      Azulejo_12: 7875525810046838898
+      Azulejo_13: 4898353005759128921
+      Azulejo_14: -4057952623019026375
+      Azulejo_15: -3005465036930288749
+      Azulejo_16: 1430773099675731892
+      Azulejo_17: 7343092835759377646
+      Azulejo_18: -1388797363704248917
+      Azulejo_19: -5675095188634187794
+      Azulejo_2: -8162160191472837766
+      Azulejo_20: 2828158760926179394
+      Azulejo_21: 1179373069130259737
+      Azulejo_22: -7260198027101072168
+      Azulejo_23: -1276348631923998439
+      Azulejo_24: 4215021665568701456
+      Azulejo_25: 2679748798702719283
+      Azulejo_26: -991250800056716967
+      Azulejo_27: 5466879919655656418
+      Azulejo_28: 311151054184735794
+      Azulejo_29: -2955877084688818914
+      Azulejo_3: 6806988070094062394
+      Azulejo_30: 3085294478709394380
+      Azulejo_31: -4536368056086539309
+      Azulejo_32: -5823672200690544991
+      Azulejo_33: 1318527428973957441
+      Azulejo_34: 2403058928933354793
+      Azulejo_35: -4790995225752070226
+      Azulejo_36: 2886322862828559512
+      Azulejo_37: -4478205463896131542
+      Azulejo_38: 5281620064356484576
+      Azulejo_39: -7789757448175001073
+      Azulejo_4: 7783943875056466157
+      Azulejo_40: -1420919068831132410
+      Azulejo_41: -390378110282603455
+      Azulejo_42: -8667140458836944766
+      Azulejo_43: 4575378370956211910
+      Azulejo_44: 594894126756237117
+      Azulejo_45: 5972555979720824773
+      Azulejo_46: -5571882380586339254
+      Azulejo_47: 2021137382017120707
+      Azulejo_48: -3462450040394100260
+      Azulejo_49: -182747971513852771
+      Azulejo_5: -4184280594606934457
+      Azulejo_50: -1549334935651637957
+      Azulejo_51: -6366569759761836406
+      Azulejo_52: -6750204443916692712
+      Azulejo_53: 873500423170340252
+      Azulejo_54: 1119431418955710910
+      Azulejo_55: 2690166896068527838
+      Azulejo_56: 3533574139549945612
+      Azulejo_57: 7362343292405707604
+      Azulejo_58: -1141972292161304453
+      Azulejo_59: -830201509920997028
+      Azulejo_6: 8561147671459099087
+      Azulejo_60: 1268625298470524900
+      Azulejo_61: -4649947954988322815
+      Azulejo_62: -3424225868490754268
+      Azulejo_63: -7813006126815588759
+      Azulejo_64: -6943018429449614210
+      Azulejo_65: 8271088663953536956
+      Azulejo_66: -5526949909276910854
+      Azulejo_67: 9152094645309781663
+      Azulejo_68: -2232196168422031431
+      Azulejo_69: 8690845142018260018
+      Azulejo_7: -922530869112273839
+      Azulejo_70: 294768722764336993
+      Azulejo_71: 256502148720517836
+      Azulejo_72: -9095131783857679614
+      Azulejo_73: 710173510810037398
+      Azulejo_74: -4525472397652519038
+      Azulejo_75: 4493408407529896768
+      Azulejo_76: -652390871062911606
+      Azulejo_77: -6308770721864714015
+      Azulejo_78: 208658273708251288
+      Azulejo_79: 2365978124421886547
+      Azulejo_8: -4166609098100374280
+      Azulejo_80: 3610045497175022076
+      Azulejo_81: 5481482694583339666
+      Azulejo_82: 5244041049103087418
+      Azulejo_83: -2904255038142971656
+      Azulejo_84: 4415977788168580622
+      Azulejo_85: -7802288008613780724
+      Azulejo_86: -4463625013524830313
+      Azulejo_87: 131417687396041122
+      Azulejo_88: 2392481489079563460
+      Azulejo_89: -1557477933508396056
+      Azulejo_9: 9161243395170521108
+      Azulejo_90: 962647577362367512
+      Azulejo_91: -8702796169223258332
+      Azulejo_92: -1727824921835949474
+      Azulejo_93: -6405398701708628534
+      Azulejo_94: 4466962030794307961
+      Azulejo_95: 9134643912826282768
+      Azulejo_96: 5565081479087601997
+      Azulejo_97: 5317546612721387881
+      Azulejo_98: 5837231953550721475
+      Azulejo_99: -5609911562586742278
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
