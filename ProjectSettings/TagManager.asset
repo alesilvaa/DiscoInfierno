@@ -42,6 +42,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 100000001
+    locked: 0
+  - name: World
+    uniqueID: 100000002
+    locked: 0
+  - name: Foreground
+    uniqueID: 100000003
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
