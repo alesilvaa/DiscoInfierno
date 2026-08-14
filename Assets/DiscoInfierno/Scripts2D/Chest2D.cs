@@ -4,6 +4,17 @@ using DG.Tweening;
 [DisallowMultipleComponent]
 public class Chest2D : MonoBehaviour
 {
+    public enum ChestRewardType
+    {
+        Equipment,
+        Upgrades
+    }
+
+    [Header("Contenido")]
+    [SerializeField] ChestRewardType rewardType = ChestRewardType.Equipment;
+    [SerializeField] Color equipmentTint = Color.white;
+    [SerializeField] Color upgradesTint = new Color(1f, 0.82f, 0.25f, 1f);
+
     [Header("Visual")]
     [Tooltip("Transform que se anima. Usá un hijo visual para no escalar el collider durante el idle.")]
     [SerializeField] Transform visualRoot;
@@ -41,6 +52,7 @@ public class Chest2D : MonoBehaviour
         }
 
         StartIdleBreathing();
+        ApplyRewardVisual();
     }
 
     void OnDestroy()
@@ -61,10 +73,16 @@ public class Chest2D : MonoBehaviour
 
     void TryOpen(GameObject other)
     {
-        if (opened || !other.CompareTag("Player"))
+        Player2D player = other.GetComponentInParent<Player2D>();
+        if (opened || player == null || !player.CompareTag("Player"))
             return;
 
         opened = true;
+        SoundManager.Instance?.PlayChestOpened();
+        SlingMovement2D sling = player.GetComponent<SlingMovement2D>();
+        if (sling != null)
+            sling.StopImmediately();
+
         if (disableColliderAfterOpen && chestCollider != null)
             chestCollider.enabled = false;
 
@@ -91,9 +109,34 @@ public class Chest2D : MonoBehaviour
             });
 
         if (UIManager.Instance != null)
-            UIManager.Instance.OpenEquipmentPopup();
+        {
+            if (rewardType == ChestRewardType.Upgrades)
+                UIManager.Instance.OpenUpgradesPanel();
+            else
+                UIManager.Instance.OpenEquipmentPopup();
+        }
         else
             Debug.LogWarning("Chest2D: no se encontró UIManager para abrir el popup.", this);
+    }
+
+    public void ConfigureReward(ChestRewardType type)
+    {
+        rewardType = type;
+        ApplyRewardVisual();
+    }
+
+    void ApplyRewardVisual()
+    {
+        if (visualRoot == null)
+            ResolveVisualRoot();
+
+        SpriteRenderer[] renderers = visualRoot.GetComponentsInChildren<SpriteRenderer>(true);
+        Color tint = rewardType == ChestRewardType.Upgrades
+            ? upgradesTint
+            : equipmentTint;
+
+        for (int i = 0; i < renderers.Length; i++)
+            renderers[i].color = tint;
     }
 
     void ResolveVisualRoot()

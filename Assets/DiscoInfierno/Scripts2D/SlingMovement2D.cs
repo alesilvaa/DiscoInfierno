@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 /// <summary>
@@ -29,9 +30,11 @@ public class SlingMovement2D : MonoBehaviour
     [SerializeField, Range(1f, 30f)] float previewFollowSpeed = 18f;
 
     [Header("Launch")]
-    [SerializeField] float minLaunchSpeed = 6f;
-    [SerializeField] float maxLaunchSpeed = 42f;
-    [SerializeField] [Range(0.5f, 2.5f)] float powerCurve = 1.35f;
+    [SerializeField] float minLaunchSpeed = 10f;
+    [SerializeField] float maxLaunchSpeed = 48f;
+    [SerializeField] [Range(0.5f, 2.5f)] float powerCurve = 0.8f;
+    [Tooltip("Golpe extra aplicado solamente al soltar el sling. No aumenta la fuerza propia de los rebotes.")]
+    [SerializeField, Min(1f)] float releasePunchMultiplier = 1.6f;
     [SerializeField] float stopSpeedThreshold = 0.35f;
 
     [Header("Obstacle Bounce")]
@@ -74,6 +77,7 @@ public class SlingMovement2D : MonoBehaviour
 
     SlingState state = SlingState.Idle;
     Vector2 anchorPosition;
+    Vector2 pointerStartWorld;
     Vector2 pullPoint;
     float currentPower;
     Vector2 launchDirection = Vector2.up;
@@ -84,6 +88,11 @@ public class SlingMovement2D : MonoBehaviour
     Color[] originalSpriteColors;
     Vector2 displayedPull;
     Vector2 velocityBeforePhysics;
+    Vector2 pendingBounceNormalSum;
+    Vector2 pendingBounceFallbackNormal;
+    Vector2 pendingBounceIncomingVelocity;
+    float pendingBounceBestOpposition = float.NegativeInfinity;
+    bool hasPendingBounce;
     float lastImpactTime = -10f;
     Coroutine impactFlashRoutine;
     float discRadius = 0.5f;
@@ -141,10 +150,9 @@ public class SlingMovement2D : MonoBehaviour
 
     void FixedUpdate()
     {
-        velocityBeforePhysics = rb.linearVelocity;
-
         if (state == SlingState.Aiming)
         {
+            ClearPendingBounce();
             rb.position = anchorPosition;
             rb.linearVelocity = Vector2.zero;
             rb.angularVelocity = 0f;
@@ -152,9 +160,14 @@ public class SlingMovement2D : MonoBehaviour
         }
 
         if (state != SlingState.Flying)
+        {
+            ClearPendingBounce();
             return;
+        }
 
+        ResolvePendingBounce();
         ApplySlideFeel(Time.fixedDeltaTime);
+        velocityBeforePhysics = rb.linearVelocity;
     }
 
     void ApplySlideFeel(float dt)
@@ -191,7 +204,7 @@ public class SlingMovement2D : MonoBehaviour
         if (pointer == null || !pointer.press.wasPressedThisFrame)
             return;
 
-        if (!IsPointerOverDisc())
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             return;
 
         if (!TryGetPointerWorldPoint(out var worldPoint))
@@ -204,7 +217,8 @@ public class SlingMovement2D : MonoBehaviour
     {
         state = SlingState.Aiming;
         anchorPosition = rb.position;
-        pullPoint = worldPoint;
+        pointerStartWorld = worldPoint;
+        pullPoint = anchorPosition;
         displayedPull = Vector2.zero;
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
@@ -228,7 +242,7 @@ public class SlingMovement2D : MonoBehaviour
         rb.position = anchorPosition;
 
         if (TryGetPointerWorldPoint(out var worldPoint))
-            pullPoint = worldPoint;
+            pullPoint = anchorPosition + (worldPoint - pointerStartWorld);
 
         UpdateAimGeometry();
         UpdatePreview();
@@ -250,9 +264,8 @@ public class SlingMovement2D : MonoBehaviour
             return;
         }
 
-        float usablePower = Mathf.InverseLerp(minPullDistance, maxPullDistance, pullMagnitude);
-        float curvedPower = Mathf.Pow(usablePower, powerCurve);
-        float speed = Mathf.Lerp(minLaunchSpeed, maxLaunchSpeed, curvedPower);
+        float speed = Mathf.Lerp(minLaunchSpeed, maxLaunchSpeed, GetLaunchPower(pullMagnitude));
+        speed *= releasePunchMultiplier;
         Vector2 velocity = launchDirection * speed;
 
         rb.linearVelocity = Vector2.zero;
@@ -273,6 +286,7 @@ public class SlingMovement2D : MonoBehaviour
     void EnterIdle()
     {
         state = SlingState.Idle;
+        ClearPendingBounce();
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
@@ -280,14 +294,37 @@ public class SlingMovement2D : MonoBehaviour
         SetTrailActive(false);
     }
 
+    public void StopImmediately()
+    {
+        if (impactFlashRoutine != null)
+        {
+            StopCoroutine(impactFlashRoutine);
+            impactFlashRoutine = null;
+        }
+
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            if (spriteRenderers[i] != null)
+                spriteRenderers[i].color = originalSpriteColors[i];
+        }
+
+        EnterIdle();
+    }
+
     void UpdateAimGeometry()
     {
         Vector2 pull = GetPullVector();
         float magnitude = pull.magnitude;
-        currentPower = Mathf.Clamp01(magnitude / maxPullDistance);
+        currentPower = GetLaunchPower(magnitude);
 
         if (magnitude > 0.001f)
             launchDirection = (-pull).normalized;
+    }
+
+    float GetLaunchPower(float pullMagnitude)
+    {
+        float usablePower = Mathf.InverseLerp(minPullDistance, maxPullDistance, pullMagnitude);
+        return Mathf.Pow(usablePower, powerCurve);
     }
 
     Vector2 GetPullVector()
@@ -448,14 +485,6 @@ public class SlingMovement2D : MonoBehaviour
         return true;
     }
 
-    bool IsPointerOverDisc()
-    {
-        if (!TryGetPointerWorldPoint(out var worldPoint))
-            return false;
-
-        return discCollider != null && discCollider.OverlapPoint(worldPoint);
-    }
-
     void ConfigureRigidbody()
     {
         rb.gravityScale = 0f;
@@ -597,25 +626,20 @@ public class SlingMovement2D : MonoBehaviour
     {
         if (state != SlingState.Flying ||
             !collision.gameObject.CompareTag("Obstacle") ||
-            Time.time - lastImpactTime < impactCooldown ||
             collision.contactCount == 0)
             return;
 
-        lastImpactTime = Time.time;
-        Vector2 incoming = velocityBeforePhysics;
-        Vector2 normal = collision.GetContact(0).normal;
-        Vector2 reflected = Vector2.Reflect(incoming, normal);
-        float bounceSpeed = Mathf.Max(minimumBounceSpeed, incoming.magnitude * bounceRetention);
+        QueueBounce(collision);
 
-        if (Vector2.Dot(reflected, normal) <= 0f)
-            reflected = normal;
-
-        rb.position += normal * collisionSeparation;
-        rb.linearVelocity = reflected.normalized * bounceSpeed;
-
-        if (impactFlashRoutine != null)
-            StopCoroutine(impactFlashRoutine);
-        impactFlashRoutine = StartCoroutine(ImpactFlash());
+        // El cooldown limita solamente el feedback visual. Todos los contactos
+        // siguen participando en el cálculo físico del rebote compuesto.
+        if (Time.time - lastImpactTime >= impactCooldown)
+        {
+            lastImpactTime = Time.time;
+            if (impactFlashRoutine != null)
+                StopCoroutine(impactFlashRoutine);
+            impactFlashRoutine = StartCoroutine(ImpactFlash());
+        }
     }
 
     void OnCollisionStay2D(Collision2D collision)
@@ -626,9 +650,77 @@ public class SlingMovement2D : MonoBehaviour
             rb.linearVelocity.magnitude >= stuckRecoverySpeed)
             return;
 
-        Vector2 normal = collision.GetContact(0).normal;
+        QueueBounce(collision);
+    }
+
+    void QueueBounce(Collision2D collision)
+    {
+        Vector2 incoming = hasPendingBounce
+            ? pendingBounceIncomingVelocity
+            : velocityBeforePhysics;
+
+        if (incoming.sqrMagnitude < 0.0001f)
+            incoming = rb.linearVelocity;
+        if (incoming.sqrMagnitude < 0.0001f)
+            incoming = launchDirection * Mathf.Max(stuckRecoverySpeed, minimumBounceSpeed);
+
+        if (!hasPendingBounce)
+        {
+            hasPendingBounce = true;
+            pendingBounceIncomingVelocity = incoming;
+        }
+
+        Vector2 incomingDirection = pendingBounceIncomingVelocity.normalized;
+        for (int i = 0; i < collision.contactCount; i++)
+        {
+            Vector2 normal = collision.GetContact(i).normal.normalized;
+            float opposition = -Vector2.Dot(incomingDirection, normal);
+
+            // Las superficies que realmente frenan la trayectoria pesan más.
+            // Esto evita que dos normales opuestas se cancelen por completo.
+            float weight = Mathf.Max(0.2f, opposition);
+            pendingBounceNormalSum += normal * weight;
+
+            if (opposition > pendingBounceBestOpposition)
+            {
+                pendingBounceBestOpposition = opposition;
+                pendingBounceFallbackNormal = normal;
+            }
+        }
+    }
+
+    void ResolvePendingBounce()
+    {
+        if (!hasPendingBounce)
+            return;
+
+        Vector2 normal = pendingBounceNormalSum.sqrMagnitude > 0.0001f
+            ? pendingBounceNormalSum.normalized
+            : pendingBounceFallbackNormal;
+        if (normal.sqrMagnitude < 0.0001f)
+            normal = -pendingBounceIncomingVelocity.normalized;
+
+        Vector2 reflected = Vector2.Reflect(pendingBounceIncomingVelocity, normal);
+        if (reflected.sqrMagnitude < 0.0001f || Vector2.Dot(reflected, normal) <= 0f)
+            reflected = normal;
+
+        float bounceSpeed = Mathf.Max(
+            minimumBounceSpeed,
+            stuckRecoverySpeed,
+            pendingBounceIncomingVelocity.magnitude * bounceRetention);
+
         rb.position += normal * collisionSeparation;
-        rb.linearVelocity = normal * Mathf.Max(stuckRecoverySpeed, minimumBounceSpeed);
+        rb.linearVelocity = reflected.normalized * bounceSpeed;
+        ClearPendingBounce();
+    }
+
+    void ClearPendingBounce()
+    {
+        hasPendingBounce = false;
+        pendingBounceNormalSum = Vector2.zero;
+        pendingBounceFallbackNormal = Vector2.zero;
+        pendingBounceIncomingVelocity = Vector2.zero;
+        pendingBounceBestOpposition = float.NegativeInfinity;
     }
 
     IEnumerator ImpactFlash()
@@ -652,6 +744,7 @@ public class SlingMovement2D : MonoBehaviour
         maxPullDistance = Mathf.Max(0.01f, maxPullDistance);
         minPullDistance = Mathf.Clamp(minPullDistance, 0f, maxPullDistance);
         maxLaunchSpeed = Mathf.Max(minLaunchSpeed, maxLaunchSpeed);
+        releasePunchMultiplier = Mathf.Max(1f, releasePunchMultiplier);
         stopSpeedThreshold = Mathf.Max(0f, stopSpeedThreshold);
         minimumBounceSpeed = Mathf.Max(0f, minimumBounceSpeed);
         previewFollowSpeed = Mathf.Max(1f, previewFollowSpeed);

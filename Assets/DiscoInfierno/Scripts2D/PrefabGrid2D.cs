@@ -212,8 +212,17 @@ public class PrefabGrid2D : MonoBehaviour
         chest.transform.localPosition = localPosition;
         chest.SetActive(true);
 
-        if (chest.GetComponent<Chest2D>() == null)
-            chest.AddComponent<Chest2D>();
+        Chest2D chestInteraction = chest.GetComponent<Chest2D>();
+        if (chestInteraction == null)
+            chestInteraction = chest.AddComponent<Chest2D>();
+
+        Chest2D.ChestRewardType rewardType = chestNumber % 2 == 0
+            ? Chest2D.ChestRewardType.Equipment
+            : Chest2D.ChestRewardType.Upgrades;
+        chestInteraction.ConfigureReward(rewardType);
+        chest.name = rewardType == Chest2D.ChestRewardType.Upgrades
+            ? $"GeneratedUpgradeChest_{chestNumber + 1}"
+            : $"GeneratedEquipmentChest_{chestNumber + 1}";
 
         if (sortByRow)
             ApplyYSorting(chest);

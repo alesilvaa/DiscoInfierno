@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df25828000cd47e4a679267ef354769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rewardType: 0
+  equipmentTint: {r: 1, g: 1, b: 1, a: 1}
+  upgradesTint: {r: 1, g: 0.82, b: 0.25, a: 1}
   visualRoot: {fileID: 6157300807839487392}
   enableIdleBreathing: 1
   idleBreathScale: 1.035
