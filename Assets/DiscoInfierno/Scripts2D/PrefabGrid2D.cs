@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -39,6 +40,18 @@ public class PrefabGrid2D : MonoBehaviour
     [Tooltip("Objeto de escena o prefab usado como plantilla para los cofres.")]
     [SerializeField] GameObject chestTemplate;
     [SerializeField, Min(0)] int chestCount = 2;
+
+    [Header("Objetos especiales")]
+    [Tooltip("Reemplaza cubos por rebotadores. Este nivel usa uno.")]
+    [SerializeField] GameObject rebotadorTemplate;
+    [SerializeField, Min(0)] int rebotadorCount = 1;
+    [Tooltip("Cada pareja genera exactamente dos portales enlazados.")]
+    [SerializeField] GameObject teletransportTemplate;
+    [SerializeField, Min(0)] int teletransportPairCount = 1;
+    [Tooltip("Separación Manhattan mínima deseada entre ambos extremos del portal.")]
+    [SerializeField, Min(1)] int minimumTeletransportCellDistance = 4;
+    [Tooltip("Variantes explosivas tomadas del hijo ExplosiveCube del prefab de obstáculo.")]
+    [SerializeField, Min(0)] int explosiveCubeCount = 3;
 
     [Header("Orden visual 2D")]
     [Tooltip("Ordena las instancias por fila para que la perspectiva 2D se vea correctamente.")]
@@ -85,6 +98,10 @@ public class PrefabGrid2D : MonoBehaviour
         horizontalSpacing = Mathf.Max(0f, horizontalSpacing);
         verticalSpacing = Mathf.Max(0f, verticalSpacing);
         sortingUnitsPerWorldUnit = Mathf.Max(1, sortingUnitsPerWorldUnit);
+        rebotadorCount = Mathf.Max(0, rebotadorCount);
+        teletransportPairCount = Mathf.Max(0, teletransportPairCount);
+        minimumTeletransportCellDistance = Mathf.Max(1, minimumTeletransportCellDistance);
+        explosiveCubeCount = Mathf.Max(0, explosiveCubeCount);
         ResizeCellArray(true);
     }
 
@@ -113,11 +130,28 @@ public class PrefabGrid2D : MonoBehaviour
             ? new Vector2((columns - 1) * horizontalStep * 0.5f, (rows - 1) * verticalStep * 0.5f)
             : Vector2.zero;
         int exitCellIndex = ResolveExitCornerIndex();
-        int[] chestCellIndices = ResolveChestCellIndices(exitCellIndex);
+        List<int> availableCells = BuildAvailableCells(exitCellIndex);
+        int[] teletransportCellIndices = ReserveTeletransportCells(availableCells);
+        int[] rebotadorCellIndices = ReserveRandomCells(
+            availableCells,
+            rebotadorTemplate != null ? rebotadorCount : 0,
+            "rebotadores");
+        int[] explosiveCubeCellIndices = ReserveRandomCells(
+            availableCells,
+            HasExplosiveCubeVariant() ? explosiveCubeCount : 0,
+            "cubos explosivos");
+        int[] chestCellIndices = ReserveRandomCells(
+            availableCells,
+            chestTemplate != null ? chestCount : 0,
+            "cofres");
         int generatedChestCount = 0;
+        int generatedRebotadorCount = 0;
+        int generatedExplosiveCubeCount = 0;
+        var generatedTeletransports = new Teletransport2D[teletransportCellIndices.Length];
 
-        if (chestTemplate != null && chestTemplate.scene.IsValid())
-            chestTemplate.SetActive(false);
+        DisableSceneTemplate(chestTemplate);
+        DisableSceneTemplate(rebotadorTemplate);
+        DisableSceneTemplate(teletransportTemplate);
 
         for (int row = 0; row < rows; row++)
         {
@@ -135,7 +169,32 @@ public class PrefabGrid2D : MonoBehaviour
                 if (index == exitCellIndex)
                     PrepareExit(parent, localPosition);
 
-                if (IsChestCell(index, chestCellIndices))
+                if (IsReservedCell(index, teletransportCellIndices))
+                {
+                    int teletransportSlot = GetReservedCellSlot(index, teletransportCellIndices);
+                    generatedTeletransports[teletransportSlot] = GenerateTeletransport(
+                        parent,
+                        localPosition,
+                        teletransportSlot + 1);
+                    continue;
+                }
+
+                if (IsReservedCell(index, rebotadorCellIndices))
+                {
+                    GenerateRebotador(parent, localPosition, ++generatedRebotadorCount);
+                    continue;
+                }
+
+                if (IsReservedCell(index, explosiveCubeCellIndices))
+                {
+                    GenerateExplosiveCube(
+                        parent,
+                        localPosition,
+                        ++generatedExplosiveCubeCount);
+                    continue;
+                }
+
+                if (IsReservedCell(index, chestCellIndices))
                 {
                     GenerateChest(parent, localPosition, generatedChestCount++);
                     continue;
@@ -152,57 +211,130 @@ public class PrefabGrid2D : MonoBehaviour
                     exitCellCube = instance;
             }
         }
+
+        LinkTeletransportPairs(generatedTeletransports);
     }
 
-    int[] ResolveChestCellIndices(int exitCellIndex)
+    List<int> BuildAvailableCells(int exitCellIndex)
     {
-        if (chestTemplate == null || chestCount <= 0)
-            return System.Array.Empty<int>();
-
-        int availableCount = 0;
+        var result = new List<int>();
         for (int i = 0; i < enabledCells.Length; i++)
         {
             if (enabledCells[i] && i != exitCellIndex)
-                availableCount++;
+                result.Add(i);
         }
 
-        int amount = Mathf.Min(chestCount, availableCount);
-        if (amount < chestCount)
-        {
-            Debug.LogWarning(
-                $"PrefabGrid2D: sólo hay {amount} celdas disponibles para {chestCount} cofres.",
-                this);
-        }
-
-        int[] available = new int[availableCount];
-        int cursor = 0;
-        for (int i = 0; i < enabledCells.Length; i++)
-        {
-            if (enabledCells[i] && i != exitCellIndex)
-                available[cursor++] = i;
-        }
-
-        for (int i = available.Length - 1; i > 0; i--)
-        {
-            int randomIndex = Random.Range(0, i + 1);
-            (available[i], available[randomIndex]) =
-                (available[randomIndex], available[i]);
-        }
-
-        int[] result = new int[amount];
-        System.Array.Copy(available, result, amount);
         return result;
     }
 
-    static bool IsChestCell(int cellIndex, int[] chestCellIndices)
+    int[] ReserveRandomCells(List<int> availableCells, int requestedCount, string label)
     {
-        for (int i = 0; i < chestCellIndices.Length; i++)
+        int amount = Mathf.Min(requestedCount, availableCells.Count);
+        if (amount < requestedCount)
         {
-            if (chestCellIndices[i] == cellIndex)
+            Debug.LogWarning(
+                $"PrefabGrid2D: sólo hay {amount} celdas disponibles para {requestedCount} {label}.",
+                this);
+        }
+
+        int[] result = new int[amount];
+        for (int i = 0; i < amount; i++)
+        {
+            int randomIndex = Random.Range(0, availableCells.Count);
+            result[i] = availableCells[randomIndex];
+            availableCells.RemoveAt(randomIndex);
+        }
+
+        return result;
+    }
+
+    int[] ReserveTeletransportCells(List<int> availableCells)
+    {
+        if (teletransportTemplate == null || teletransportPairCount <= 0)
+            return System.Array.Empty<int>();
+
+        int availablePairs = availableCells.Count / 2;
+        int pairAmount = Mathf.Min(teletransportPairCount, availablePairs);
+        if (pairAmount < teletransportPairCount)
+        {
+            Debug.LogWarning(
+                $"PrefabGrid2D: sólo hay espacio para {pairAmount} de {teletransportPairCount} parejas de teletransportes.",
+                this);
+        }
+
+        int[] result = new int[pairAmount * 2];
+        for (int pair = 0; pair < pairAmount; pair++)
+        {
+            int firstListIndex = Random.Range(0, availableCells.Count);
+            int firstCell = availableCells[firstListIndex];
+            availableCells.RemoveAt(firstListIndex);
+
+            int secondListIndex = FindTeletransportPartner(firstCell, availableCells);
+            result[pair * 2] = firstCell;
+            result[pair * 2 + 1] = availableCells[secondListIndex];
+            availableCells.RemoveAt(secondListIndex);
+        }
+
+        return result;
+    }
+
+    int FindTeletransportPartner(int firstCell, List<int> candidates)
+    {
+        int bestDistance = -1;
+        var preferred = new List<int>();
+
+        for (int i = 0; i < candidates.Count; i++)
+        {
+            int distance = GetManhattanDistance(firstCell, candidates[i]);
+            if (distance >= minimumTeletransportCellDistance)
+                preferred.Add(i);
+
+            if (distance > bestDistance)
+                bestDistance = distance;
+        }
+
+        if (preferred.Count > 0)
+            return preferred[Random.Range(0, preferred.Count)];
+
+        var furthest = new List<int>();
+        for (int i = 0; i < candidates.Count; i++)
+        {
+            if (GetManhattanDistance(firstCell, candidates[i]) == bestDistance)
+                furthest.Add(i);
+        }
+
+        return furthest[Random.Range(0, furthest.Count)];
+    }
+
+    int GetManhattanDistance(int firstCell, int secondCell)
+    {
+        int firstColumn = firstCell % columns;
+        int firstRow = firstCell / columns;
+        int secondColumn = secondCell % columns;
+        int secondRow = secondCell / columns;
+        return Mathf.Abs(firstColumn - secondColumn) + Mathf.Abs(firstRow - secondRow);
+    }
+
+    static bool IsReservedCell(int cellIndex, int[] reservedCells)
+    {
+        for (int i = 0; i < reservedCells.Length; i++)
+        {
+            if (reservedCells[i] == cellIndex)
                 return true;
         }
 
         return false;
+    }
+
+    static int GetReservedCellSlot(int cellIndex, int[] reservedCells)
+    {
+        for (int i = 0; i < reservedCells.Length; i++)
+        {
+            if (reservedCells[i] == cellIndex)
+                return i;
+        }
+
+        return -1;
     }
 
     void GenerateChest(Transform parent, Vector3 localPosition, int chestNumber)
@@ -226,6 +358,102 @@ public class PrefabGrid2D : MonoBehaviour
 
         if (sortByRow)
             ApplyYSorting(chest);
+    }
+
+    void GenerateRebotador(Transform parent, Vector3 localPosition, int number)
+    {
+        GameObject instance = GenerateSpecial(
+            rebotadorTemplate,
+            parent,
+            localPosition,
+            $"GeneratedRebotador_{number}");
+        if (instance.GetComponent<Rebotador2D>() == null)
+            instance.AddComponent<Rebotador2D>();
+    }
+
+    void GenerateExplosiveCube(Transform parent, Vector3 localPosition, int number)
+    {
+        GameObject instance = Instantiate(prefab, parent);
+        instance.name = $"GeneratedExplosiveCube_{number}";
+        instance.transform.localPosition = localPosition;
+
+        Obstacle2D regularObstacle = instance.GetComponent<Obstacle2D>();
+        if (regularObstacle != null)
+            regularObstacle.enabled = false;
+
+        ExplosiveCube2D explosive = instance.GetComponent<ExplosiveCube2D>();
+        if (explosive == null)
+            explosive = instance.AddComponent<ExplosiveCube2D>();
+        explosive.ActivateVariant();
+
+        if (sortByRow)
+            ApplyYSorting(instance);
+    }
+
+    bool HasExplosiveCubeVariant()
+    {
+        if (prefab == null || explosiveCubeCount <= 0)
+            return false;
+
+        Transform variant = prefab.transform.Find("ExplosiveCube");
+        if (variant != null)
+            return true;
+
+        Debug.LogWarning(
+            "PrefabGrid2D: el prefab de obstáculo no contiene un hijo ExplosiveCube.",
+            this);
+        return false;
+    }
+
+    Teletransport2D GenerateTeletransport(
+        Transform parent,
+        Vector3 localPosition,
+        int number)
+    {
+        GameObject instance = GenerateSpecial(
+            teletransportTemplate,
+            parent,
+            localPosition,
+            $"GeneratedTeletransport_{number}");
+        Teletransport2D teletransport = instance.GetComponent<Teletransport2D>();
+        return teletransport != null
+            ? teletransport
+            : instance.AddComponent<Teletransport2D>();
+    }
+
+    GameObject GenerateSpecial(
+        GameObject template,
+        Transform parent,
+        Vector3 localPosition,
+        string instanceName)
+    {
+        GameObject instance = Instantiate(template, parent);
+        instance.name = instanceName;
+        instance.transform.localPosition = localPosition;
+        instance.SetActive(true);
+
+        if (sortByRow)
+            ApplyYSorting(instance);
+
+        return instance;
+    }
+
+    static void LinkTeletransportPairs(Teletransport2D[] teletransports)
+    {
+        for (int i = 0; i + 1 < teletransports.Length; i += 2)
+        {
+            if (teletransports[i] == null || teletransports[i + 1] == null)
+                continue;
+
+            teletransports[i].ConfigureDestination(teletransports[i + 1]);
+            teletransports[i + 1].ConfigureDestination(teletransports[i]);
+        }
+    }
+
+    static void DisableSceneTemplate(GameObject template)
+    {
+        if (template != null && template.scene.IsValid())
+            template.SetActive(false);
     }
 
     int ResolveExitCornerIndex()
@@ -446,8 +674,15 @@ public class PrefabGrid2D : MonoBehaviour
         {
             Transform child = parent.GetChild(i);
             bool isGeneratedCube = child.name.StartsWith(prefab.name + "_");
-            bool isGeneratedChest = child.name.StartsWith("GeneratedChest_");
-            if (!isGeneratedCube && !isGeneratedChest)
+            bool isGeneratedChest =
+                child.name.StartsWith("GeneratedChest_") ||
+                child.name.StartsWith("GeneratedEquipmentChest_") ||
+                child.name.StartsWith("GeneratedUpgradeChest_");
+            bool isGeneratedSpecial =
+                child.name.StartsWith("GeneratedRebotador_") ||
+                child.name.StartsWith("GeneratedTeletransport_") ||
+                child.name.StartsWith("GeneratedExplosiveCube_");
+            if (!isGeneratedCube && !isGeneratedChest && !isGeneratedSpecial)
                 continue;
 
             if (Application.isPlaying)

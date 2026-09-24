@@ -91,8 +91,13 @@ public class SlingMovement2D : MonoBehaviour
     Vector2 pendingBounceNormalSum;
     Vector2 pendingBounceFallbackNormal;
     Vector2 pendingBounceIncomingVelocity;
+    float pendingBounceSpeed;
+    bool pendingBounceConsumesEnhancement;
     float pendingBounceBestOpposition = float.NegativeInfinity;
     bool hasPendingBounce;
+    int enhancedBouncesRemaining;
+    float enhancedBounceRetention;
+    float suppressBounceUntilFixedTime = -1f;
     float lastImpactTime = -10f;
     Coroutine impactFlashRoutine;
     float discRadius = 0.5f;
@@ -625,6 +630,7 @@ public class SlingMovement2D : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (state != SlingState.Flying ||
+            Time.fixedTime < suppressBounceUntilFixedTime ||
             !collision.gameObject.CompareTag("Obstacle") ||
             collision.contactCount == 0)
             return;
@@ -645,6 +651,7 @@ public class SlingMovement2D : MonoBehaviour
     void OnCollisionStay2D(Collision2D collision)
     {
         if (state != SlingState.Flying ||
+            Time.fixedTime < suppressBounceUntilFixedTime ||
             !collision.gameObject.CompareTag("Obstacle") ||
             collision.contactCount == 0 ||
             rb.linearVelocity.magnitude >= stuckRecoverySpeed)
@@ -668,6 +675,17 @@ public class SlingMovement2D : MonoBehaviour
         {
             hasPendingBounce = true;
             pendingBounceIncomingVelocity = incoming;
+            float retention = bounceRetention;
+            if (enhancedBouncesRemaining > 0)
+            {
+                retention = Mathf.Max(retention, enhancedBounceRetention);
+                pendingBounceConsumesEnhancement = true;
+            }
+
+            pendingBounceSpeed = Mathf.Max(
+                minimumBounceSpeed,
+                stuckRecoverySpeed,
+                incoming.magnitude * retention);
         }
 
         Vector2 incomingDirection = pendingBounceIncomingVelocity.normalized;
@@ -689,6 +707,85 @@ public class SlingMovement2D : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Recibe un rebote especial sin transferir al rebotador la responsabilidad
+    /// del estado, el anti-stuck ni la integración física del Player.
+    /// </summary>
+    public void ApplyBumperBounce(
+        Vector2 surfaceNormal,
+        float directSpeedMultiplier,
+        float minimumExitSpeed,
+        int followingEnhancedBounces,
+        float followingBounceRetention)
+    {
+        if (state != SlingState.Flying ||
+            rb == null ||
+            Time.fixedTime < suppressBounceUntilFixedTime)
+            return;
+
+        Vector2 incoming = velocityBeforePhysics.sqrMagnitude > 0.0001f
+            ? velocityBeforePhysics
+            : rb.linearVelocity;
+        if (incoming.sqrMagnitude < 0.0001f)
+            incoming = launchDirection * Mathf.Max(stuckRecoverySpeed, minimumExitSpeed);
+
+        if (Vector2.Dot(incoming, surfaceNormal) > 0f)
+            surfaceNormal = -surfaceNormal;
+
+        if (!hasPendingBounce)
+        {
+            hasPendingBounce = true;
+            pendingBounceIncomingVelocity = incoming;
+        }
+
+        AddPendingBounceNormal(surfaceNormal, incoming.normalized);
+        pendingBounceSpeed = Mathf.Max(
+            pendingBounceSpeed,
+            minimumExitSpeed,
+            incoming.magnitude * Mathf.Max(1f, directSpeedMultiplier));
+
+        enhancedBouncesRemaining = Mathf.Max(
+            enhancedBouncesRemaining,
+            Mathf.Max(0, followingEnhancedBounces));
+        enhancedBounceRetention = Mathf.Max(
+            enhancedBounceRetention,
+            Mathf.Max(0f, followingBounceRetention));
+    }
+
+    public void TeleportTo(Vector2 worldPosition)
+    {
+        if (rb == null)
+            return;
+
+        ClearPendingBounce();
+        rb.position = worldPosition;
+        transform.position = worldPosition;
+        velocityBeforePhysics = rb.linearVelocity;
+        suppressBounceUntilFixedTime = Time.fixedTime + Time.fixedDeltaTime * 0.5f;
+        flightTrail?.Clear();
+        Physics2D.SyncTransforms();
+    }
+
+    void AddPendingBounceNormal(Vector2 normal, Vector2 incomingDirection)
+    {
+        if (normal.sqrMagnitude < 0.0001f)
+            return;
+
+        normal.Normalize();
+        if (Vector2.Dot(incomingDirection, normal) > 0f)
+            normal = -normal;
+
+        float opposition = -Vector2.Dot(incomingDirection, normal);
+        float weight = Mathf.Max(0.2f, opposition);
+        pendingBounceNormalSum += normal * weight;
+
+        if (opposition > pendingBounceBestOpposition)
+        {
+            pendingBounceBestOpposition = opposition;
+            pendingBounceFallbackNormal = normal;
+        }
+    }
+
     void ResolvePendingBounce()
     {
         if (!hasPendingBounce)
@@ -707,10 +804,12 @@ public class SlingMovement2D : MonoBehaviour
         float bounceSpeed = Mathf.Max(
             minimumBounceSpeed,
             stuckRecoverySpeed,
-            pendingBounceIncomingVelocity.magnitude * bounceRetention);
+            pendingBounceSpeed);
 
         rb.position += normal * collisionSeparation;
         rb.linearVelocity = reflected.normalized * bounceSpeed;
+        if (pendingBounceConsumesEnhancement && enhancedBouncesRemaining > 0)
+            enhancedBouncesRemaining--;
         ClearPendingBounce();
     }
 
@@ -720,6 +819,8 @@ public class SlingMovement2D : MonoBehaviour
         pendingBounceNormalSum = Vector2.zero;
         pendingBounceFallbackNormal = Vector2.zero;
         pendingBounceIncomingVelocity = Vector2.zero;
+        pendingBounceSpeed = 0f;
+        pendingBounceConsumesEnhancement = false;
         pendingBounceBestOpposition = float.NegativeInfinity;
     }
 
