@@ -703,7 +703,7 @@ MonoBehaviour:
   impactScale: 1.1
   growDuration: 0.08
   settleDuration: 0.16
-  hitCooldown: 0.05
+  hitCooldown: 0.15
   hitTintColor: {r: 1, g: 0.55, b: 0.55, a: 0.9137255}
   hitTintDuration: 0.18
   minimumPushDistance: 0.4
@@ -712,7 +712,7 @@ MonoBehaviour:
   fullImpactSpeed: 35
   pushHoldDuration: 0.025
   maximumImpactTilt: 5
-  maxHealth: 5
+  maxHealth: 10
   contactDamage: 1
   damageTextTemplate: {fileID: 7370115456741352399}
   damageTextDuration: 0.65
@@ -755,6 +755,7 @@ MonoBehaviour:
   anticipationScale: 1.18
   anticipationDuration: 0.08
   disappearDuration: 0.1
+  isVariantActive: 0
 --- !u!1 &1924280812144701379
 GameObject:
   m_ObjectHideFlags: 0

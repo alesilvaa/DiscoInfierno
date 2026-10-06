@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4070f33f286453a89cb8253439d572, type: 3}
+  m_Name: Weapon_scythe
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  id: scythe
+  displayName: "Guada\xF1a"
+  description: "Golpes pesados de mayor da\xF1o, con una duraci\xF3n m\xE1s corta."
+  icon: {fileID: 7763377582369790581, guid: 36d5885b7bb5b407ca73c43def98016b, type: 3}
+  damage: 3
+  duration: 7

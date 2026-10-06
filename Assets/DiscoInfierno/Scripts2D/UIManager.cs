@@ -49,6 +49,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] RectTransform equipmentPopupPanel;
     [SerializeField] Button equipmentPopupCloseButton;
     [SerializeField] Button equipmentEquipButton;
+    [Tooltip("Inventario del Player. Si queda vacío se busca automáticamente.")]
+    [SerializeField] PlayerWeaponInventory2D playerWeapons;
+    [SerializeField] Image equipmentWeaponIcon;
+    [SerializeField] TMP_Text equipmentWeaponTitle;
+    [SerializeField] TMP_Text equipmentWeaponDescription;
     [SerializeField, Range(0.5f, 1f)] float popupStartScale = 0.86f;
     [SerializeField, Min(0.01f)] float popupOpenDuration = 0.24f;
     [SerializeField, Min(0.01f)] float popupCloseDuration = 0.16f;
@@ -95,6 +100,7 @@ public class UIManager : MonoBehaviour
     Sequence miniMapSequence;
     bool isMiniMapOpen;
     FailScreenUI failScreen;
+    WeaponData selectedWeapon;
 
     public bool IsPopupOpen { get; private set; }
 
@@ -177,7 +183,7 @@ public class UIManager : MonoBehaviour
         if (equipmentPopupCloseButton != null)
             equipmentPopupCloseButton.onClick.RemoveListener(CloseEquipmentPopup);
         if (equipmentEquipButton != null)
-            equipmentEquipButton.onClick.RemoveListener(EquipBoxingGlove);
+            equipmentEquipButton.onClick.RemoveListener(EquipSelectedWeapon);
         if (settingsOpenButton != null)
             settingsOpenButton.onClick.RemoveListener(OpenSettingsPopup);
         if (settingsPopupCloseButton != null)
@@ -399,6 +405,30 @@ public class UIManager : MonoBehaviour
                 equipmentEquipButton = equip.GetComponent<Button>();
         }
 
+
+        if (equipmentPopup != null && equipmentWeaponIcon == null)
+        {
+            Transform icon = FindDescendant(equipmentPopup.transform, "Image_Glove");
+            if (icon != null)
+                equipmentWeaponIcon = icon.GetComponent<Image>();
+        }
+
+        if (equipmentPopup != null && equipmentWeaponTitle == null)
+        {
+            Transform title = FindDescendant(
+                equipmentPopup.transform,
+                "Text_Tiitle_BoxingGlove");
+            if (title != null)
+                equipmentWeaponTitle = title.GetComponent<TMP_Text>();
+        }
+
+        if (equipmentPopup != null && equipmentWeaponDescription == null)
+        {
+            Transform description = FindDescendant(equipmentPopup.transform, "Text_Legendary");
+            if (description != null)
+                equipmentWeaponDescription = description.GetComponent<TMP_Text>();
+        }
+
         if (settingsOpenButton == null)
         {
             Transform button = FindDescendant(transform, "BtnSettings");
@@ -615,8 +645,8 @@ public class UIManager : MonoBehaviour
 
         if (equipmentEquipButton != null)
         {
-            equipmentEquipButton.onClick.RemoveListener(EquipBoxingGlove);
-            equipmentEquipButton.onClick.AddListener(EquipBoxingGlove);
+            equipmentEquipButton.onClick.RemoveListener(EquipSelectedWeapon);
+            equipmentEquipButton.onClick.AddListener(EquipSelectedWeapon);
         }
         else
         {
@@ -640,14 +670,54 @@ public class UIManager : MonoBehaviour
             text.text = value;
     }
 
-    void EquipBoxingGlove()
+    void PrepareRandomWeaponOffer()
+    {
+        if (playerWeapons == null)
+        {
+            Player2D player = FindFirstObjectByType<Player2D>();
+            if (player != null)
+            {
+                playerWeapons = player.GetComponent<PlayerWeaponInventory2D>();
+                if (playerWeapons == null)
+                    playerWeapons = player.gameObject.AddComponent<PlayerWeaponInventory2D>();
+            }
+        }
+
+        selectedWeapon = playerWeapons != null
+            ? playerWeapons.GetRandomOffer()
+            : null;
+        if (selectedWeapon == null)
+            return;
+
+        if (equipmentWeaponIcon != null)
+        {
+            equipmentWeaponIcon.sprite = selectedWeapon.Icon;
+            equipmentWeaponIcon.preserveAspect = true;
+        }
+        if (equipmentWeaponTitle != null)
+            equipmentWeaponTitle.text = selectedWeapon.DisplayName;
+        if (equipmentWeaponDescription != null)
+            equipmentWeaponDescription.text = selectedWeapon.Description;
+
+        SetEquipmentText("Text_+50", $"+{selectedWeapon.Damage}");
+        SetEquipmentText(
+            "Text_+300",
+            selectedWeapon.Duration > 0f
+                ? $"{selectedWeapon.Duration:0.#}s"
+                : "Permanent");
+    }
+
+    void EquipSelectedWeapon()
     {
         SoundManager.Instance?.PlayEquipClicked();
 
         if (gameController == null)
             BindGameController();
 
-        if (gameController != null && gameController.EquipBoxingGlove())
+        bool equipped = selectedWeapon != null
+            ? gameController != null && gameController.EquipWeapon(selectedWeapon)
+            : gameController != null && gameController.EquipBoxingGlove();
+        if (equipped)
             CloseEquipmentPopup();
     }
 
@@ -898,6 +968,7 @@ public class UIManager : MonoBehaviour
             return;
 
         popupSequence?.Kill();
+        PrepareRandomWeaponOffer();
         equipmentPopup.SetActive(true);
         IsPopupOpen = true;
 

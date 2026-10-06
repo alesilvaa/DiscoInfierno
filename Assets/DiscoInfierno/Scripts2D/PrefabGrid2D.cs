@@ -84,6 +84,88 @@ public class PrefabGrid2D : MonoBehaviour
     public int Rows => rows;
     public bool[] EnabledCells => enabledCells;
 
+    /// <summary>
+    /// Devuelve los límites exteriores de todas las celdas activas de la grilla.
+    /// El resultado está en espacio mundo y sirve para cámara, caída y respawn.
+    /// </summary>
+    public bool TryGetPlayableWorldBounds(out Bounds worldBounds)
+    {
+        ResizeCellArray(true);
+
+        float horizontalStep = cellWidth + horizontalSpacing;
+        float verticalStep = cellHeight + verticalSpacing;
+        Vector2 offset = centerGrid
+            ? new Vector2(
+                (columns - 1) * horizontalStep * 0.5f,
+                (rows - 1) * verticalStep * 0.5f)
+            : Vector2.zero;
+
+        bool foundCell = false;
+        Vector2 localMin = Vector2.zero;
+        Vector2 localMax = Vector2.zero;
+
+        for (int row = 0; row < rows; row++)
+        {
+            for (int column = 0; column < columns; column++)
+            {
+                int index = GetIndex(column, row);
+                if (index >= enabledCells.Length || !enabledCells[index])
+                    continue;
+
+                Vector2 center = new Vector2(
+                    column * horizontalStep - offset.x,
+                    row * verticalStep - offset.y);
+                Vector2 cellMin = center - new Vector2(cellWidth, cellHeight) * 0.5f;
+                Vector2 cellMax = center + new Vector2(cellWidth, cellHeight) * 0.5f;
+
+                if (!foundCell)
+                {
+                    localMin = cellMin;
+                    localMax = cellMax;
+                    foundCell = true;
+                }
+                else
+                {
+                    localMin = Vector2.Min(localMin, cellMin);
+                    localMax = Vector2.Max(localMax, cellMax);
+                }
+            }
+        }
+
+        if (!foundCell)
+        {
+            worldBounds = default;
+            return false;
+        }
+
+        Transform parent = generatedParent != null ? generatedParent : transform;
+        Vector3[] corners =
+        {
+            parent.TransformPoint(localMin.x, localMin.y, 0f),
+            parent.TransformPoint(localMin.x, localMax.y, 0f),
+            parent.TransformPoint(localMax.x, localMin.y, 0f),
+            parent.TransformPoint(localMax.x, localMax.y, 0f)
+        };
+
+        worldBounds = new Bounds(corners[0], Vector3.zero);
+        for (int i = 1; i < corners.Length; i++)
+            worldBounds.Encapsulate(corners[i]);
+        return true;
+    }
+
+    public bool ContainsWorldPosition(Vector3 worldPosition, float padding = 0f)
+    {
+        if (!TryGetPlayableWorldBounds(out Bounds bounds))
+            return true;
+
+        padding = Mathf.Max(0f, padding);
+        bounds.Expand(new Vector3(padding * 2f, padding * 2f, 0f));
+        return worldPosition.x >= bounds.min.x &&
+               worldPosition.x <= bounds.max.x &&
+               worldPosition.y >= bounds.min.y &&
+               worldPosition.y <= bounds.max.y;
+    }
+
     void Reset()
     {
         ResizeCellArray(true);

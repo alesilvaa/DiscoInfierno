@@ -2,13 +2,13 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-[DisallowMultipleComponent]
-public class BoxGloveOrbit2D : MonoBehaviour
+public class BoxGloveOrbit2D : MonoBehaviour, IPlayerWeapon2D
 {
     [Header("Referencias")]
     [Tooltip("Objeto Player/Weapons/BoxGlove.")]
     [SerializeField] Transform gloveVisual;
     [SerializeField] Player2D player;
+    [SerializeField] string weaponId = "boxing_glove";
 
     [Header("Habilidad")]
     [SerializeField, Min(0.1f)] float activeDuration = 10f;
@@ -40,11 +40,13 @@ public class BoxGloveOrbit2D : MonoBehaviour
 
     public bool IsActive => isActive;
     public float RemainingTime => remainingTime;
+    public string WeaponId => weaponId;
+    public bool IsEquipped => isActive;
 
     void Awake()
     {
         if (player == null)
-            player = GetComponent<Player2D>();
+            player = GetComponentInParent<Player2D>();
         ResolveGlove();
         ConfigureContactFilter();
         CacheVisualState();
@@ -81,6 +83,24 @@ public class BoxGloveOrbit2D : MonoBehaviour
             .DOScale(gloveBaseScale, appearDuration)
             .SetEase(Ease.OutBack)
             .SetTarget(gloveVisual);
+    }
+
+    public void Equip(WeaponData definition)
+    {
+        if (definition != null)
+        {
+            damage = Mathf.Max(1, definition.Damage);
+            if (definition.Duration > 0f)
+                activeDuration = definition.Duration;
+        }
+
+        Activate();
+    }
+
+    public void Unequip()
+    {
+        if (gloveVisual != null)
+            Deactivate(true);
     }
 
     void Update()
@@ -200,7 +220,7 @@ public class BoxGloveOrbit2D : MonoBehaviour
 
     void Deactivate(bool animate)
     {
-        if (!isActive && !gloveVisual.gameObject.activeSelf)
+        if (gloveVisual == null || (!isActive && !gloveVisual.gameObject.activeSelf))
             return;
 
         isActive = false;

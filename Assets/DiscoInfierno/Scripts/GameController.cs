@@ -111,6 +111,18 @@ public class GameController : MonoBehaviour
         return true;
     }
 
+    public bool EquipWeapon(WeaponData definition)
+    {
+        if (isGameOver || player == null || !player.IsAlive || definition == null)
+            return false;
+
+        PlayerWeaponInventory2D inventory = player.GetComponent<PlayerWeaponInventory2D>();
+        if (inventory == null)
+            inventory = player.gameObject.AddComponent<PlayerWeaponInventory2D>();
+
+        return inventory.Equip(definition);
+    }
+
     public void RegisterDestroyedCube()
     {
         if (isGameOver)

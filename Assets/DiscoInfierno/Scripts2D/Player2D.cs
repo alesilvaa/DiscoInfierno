@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Player2D : MonoBehaviour
 {
@@ -39,10 +40,29 @@ public class Player2D : MonoBehaviour
     [SerializeField] Camera followCamera;
     [SerializeField] Vector2 cameraOffset = Vector2.zero;
     [SerializeField, Min(0.01f)] float cameraSmoothTime = 0.16f;
+    [Tooltip("Área normalizada de pantalla donde el Player puede moverse sin arrastrar la cámara.")]
+    [SerializeField] Vector2 cameraSafeArea = new Vector2(0.42f, 0.34f);
+
+    [Header("Caída fuera del escenario")]
+    [SerializeField] bool enableOutOfBoundsFall = true;
+    [Tooltip("Grid que define el área jugable. Si queda vacío se busca automáticamente.")]
+    [SerializeField] PrefabGrid2D gridBounds;
+    [Tooltip("Margen adicional fuera de la última celda antes de considerar la caída.")]
+    [SerializeField, Min(0f)] float outOfBoundsPadding = 0.35f;
+    [Tooltip("Raíz visual que se achica. Si queda vacía se anima el Player completo.")]
+    [SerializeField] Transform fallVisualRoot;
+    [SerializeField, Min(0.05f)] float fallDuration = 0.48f;
+    [SerializeField, Range(0f, 0.5f)] float fallEndScale = 0.06f;
+    [SerializeField] float fallRotation = 220f;
 
     Transform defaultFace;
     Vector3 cameraFollowVelocity;
+    Vector3 fallBaseScale;
+    Quaternion fallBaseRotation;
+    Collider2D[] playerColliders;
+    Sequence fallSequence;
     float nextDamageTime;
+    bool isFalling;
 
     public bool IsAlive => isAlive;
     public bool CanSling => isAlive && !blocked;
@@ -52,6 +72,7 @@ public class Player2D : MonoBehaviour
     public float HealthNormalized => maxHealth <= 0 ? 0f : currentHealth / (float)maxHealth;
     public int Income => income;
     public bool IsDamageInvulnerable => Time.time < nextDamageTime;
+    public bool IsFalling => isFalling;
 
     public event System.Action<int, int> HealthChanged;
     public event System.Action StatsChanged;
@@ -79,6 +100,22 @@ public class Player2D : MonoBehaviour
         CacheFaces();
         ShowDefaultFace();
         ConfigureCameraFollow();
+        ConfigureOutOfBoundsFall();
+    }
+
+    void Update()
+    {
+        if (!enableOutOfBoundsFall || !isAlive || isFalling)
+            return;
+
+        if (gridBounds == null)
+            gridBounds = FindFirstObjectByType<PrefabGrid2D>();
+
+        if (gridBounds != null &&
+            !gridBounds.ContainsWorldPosition(transform.position, outOfBoundsPadding))
+        {
+            BeginOutOfBoundsFall();
+        }
     }
 
     void LateUpdate()
@@ -92,16 +129,44 @@ public class Player2D : MonoBehaviour
             return;
 
         Vector3 currentPosition = followCamera.transform.position;
-        Vector3 targetPosition = new Vector3(
-            transform.position.x + cameraOffset.x,
-            transform.position.y + cameraOffset.y,
-            currentPosition.z);
+        Vector3 targetPosition = GetCameraSafeAreaTarget(currentPosition);
+
+        if ((targetPosition - currentPosition).sqrMagnitude < 0.000001f)
+        {
+            cameraFollowVelocity = Vector3.zero;
+            return;
+        }
 
         followCamera.transform.position = Vector3.SmoothDamp(
             currentPosition,
             targetPosition,
             ref cameraFollowVelocity,
             cameraSmoothTime);
+    }
+
+    Vector3 GetCameraSafeAreaTarget(Vector3 currentCameraPosition)
+    {
+        Vector3 focusPoint = transform.position + (Vector3)cameraOffset;
+        Vector3 viewportPoint = followCamera.WorldToViewportPoint(focusPoint);
+        Vector2 halfArea = cameraSafeArea * 0.5f;
+        float minX = 0.5f - halfArea.x;
+        float maxX = 0.5f + halfArea.x;
+        float minY = 0.5f - halfArea.y;
+        float maxY = 0.5f + halfArea.y;
+        Vector3 clampedViewport = viewportPoint;
+        clampedViewport.x = Mathf.Clamp(viewportPoint.x, minX, maxX);
+        clampedViewport.y = Mathf.Clamp(viewportPoint.y, minY, maxY);
+
+        if (Mathf.Approximately(clampedViewport.x, viewportPoint.x) &&
+            Mathf.Approximately(clampedViewport.y, viewportPoint.y))
+        {
+            return currentCameraPosition;
+        }
+
+        Vector3 boundaryPoint = followCamera.ViewportToWorldPoint(clampedViewport);
+        Vector3 correction = focusPoint - boundaryPoint;
+        correction.z = 0f;
+        return currentCameraPosition + correction;
     }
 
     void ConfigureCameraFollow()
@@ -133,8 +198,67 @@ public class Player2D : MonoBehaviour
         income = Mathf.Max(0, income);
         damageInvulnerabilityDuration = Mathf.Max(0f, damageInvulnerabilityDuration);
         cameraSmoothTime = Mathf.Max(0.01f, cameraSmoothTime);
+        cameraSafeArea.x = Mathf.Clamp(cameraSafeArea.x, 0.05f, 0.95f);
+        cameraSafeArea.y = Mathf.Clamp(cameraSafeArea.y, 0.05f, 0.95f);
+        outOfBoundsPadding = Mathf.Max(0f, outOfBoundsPadding);
+        fallDuration = Mathf.Max(0.05f, fallDuration);
+        fallEndScale = Mathf.Clamp(fallEndScale, 0f, 0.5f);
         if (healthSlider != null)
             healthSlider.value = HealthNormalized;
+    }
+
+    void ConfigureOutOfBoundsFall()
+    {
+        if (gridBounds == null)
+            gridBounds = FindFirstObjectByType<PrefabGrid2D>();
+        if (fallVisualRoot == null)
+            fallVisualRoot = transform;
+
+        fallBaseScale = fallVisualRoot.localScale;
+        fallBaseRotation = fallVisualRoot.localRotation;
+        playerColliders = GetComponentsInChildren<Collider2D>(true);
+    }
+
+    void BeginOutOfBoundsFall()
+    {
+        if (isFalling || !isAlive)
+            return;
+
+        isFalling = true;
+        blocked = true;
+        GetComponent<SlingMovement2D>()?.StopImmediately();
+        SetPlayerCollisions(false);
+
+        if (fallVisualRoot == null)
+            ConfigureOutOfBoundsFall();
+
+        fallSequence?.Kill();
+        fallSequence = DOTween.Sequence()
+            .SetTarget(this)
+            .Join(
+                fallVisualRoot
+                    .DOScale(fallBaseScale * fallEndScale, fallDuration)
+                    .SetEase(Ease.InBack))
+            .Join(
+                fallVisualRoot
+                    .DOLocalRotate(
+                        fallBaseRotation.eulerAngles + Vector3.forward * fallRotation,
+                        fallDuration,
+                        RotateMode.FastBeyond360)
+                    .SetEase(Ease.InQuad))
+            .OnComplete(Die);
+    }
+
+    void SetPlayerCollisions(bool enabled)
+    {
+        if (playerColliders == null)
+            playerColliders = GetComponentsInChildren<Collider2D>(true);
+
+        for (int i = 0; i < playerColliders.Length; i++)
+        {
+            if (playerColliders[i] != null)
+                playerColliders[i].enabled = enabled;
+        }
     }
 
     public void TakeDamage(int amount)
@@ -207,6 +331,11 @@ public class Player2D : MonoBehaviour
         Died?.Invoke();
     }
 
+    void OnDestroy()
+    {
+        fallSequence?.Kill();
+    }
+
     public void SetBlocked(bool value) => blocked = value;
 
     public void SetAlive(bool value)
@@ -214,6 +343,14 @@ public class Player2D : MonoBehaviour
         isAlive = value;
         if (isAlive)
         {
+            fallSequence?.Kill();
+            isFalling = false;
+            if (fallVisualRoot != null)
+            {
+                fallVisualRoot.localScale = fallBaseScale;
+                fallVisualRoot.localRotation = fallBaseRotation;
+            }
+            SetPlayerCollisions(true);
             if (currentHealth <= 0)
                 currentHealth = maxHealth;
             blocked = false;

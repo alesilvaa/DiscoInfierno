@@ -32,6 +32,7 @@ public sealed class ExplosiveCube2D : MonoBehaviour
     Collider2D[] colliders;
     Vector3 baseVisualScale;
     Sequence explosionSequence;
+    [SerializeField, HideInInspector] bool isVariantActive;
     bool initialized;
     bool exploded;
 
@@ -42,6 +43,7 @@ public sealed class ExplosiveCube2D : MonoBehaviour
     /// </summary>
     public void ActivateVariant()
     {
+        isVariantActive = true;
         ResolveReferences();
 
         if (regularVisualRoot != null)
@@ -57,7 +59,7 @@ public sealed class ExplosiveCube2D : MonoBehaviour
     {
         // El componente permanece deshabilitado en el prefab base y sólo se
         // habilita para las tres instancias reservadas por la grilla.
-        if (explosiveVisualRoot != null && explosiveVisualRoot.activeSelf)
+        if (isVariantActive && explosiveVisualRoot != null && explosiveVisualRoot.activeSelf)
             InitializeRuntime();
     }
 
@@ -68,7 +70,7 @@ public sealed class ExplosiveCube2D : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (exploded)
+        if (!isVariantActive || exploded)
             return;
 
         Player2D player = collision.gameObject.GetComponentInParent<Player2D>();
@@ -81,7 +83,7 @@ public sealed class ExplosiveCube2D : MonoBehaviour
     [ContextMenu("Detonar")]
     public void Explode()
     {
-        if (exploded)
+        if (!isVariantActive || exploded)
             return;
 
         InitializeRuntime();

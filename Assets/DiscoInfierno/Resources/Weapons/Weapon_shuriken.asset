@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4070f33f286453a89cb8253439d572, type: 3}
+  m_Name: Weapon_shuriken
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  id: shuriken
+  displayName: Shuriken
+  description: "Equilibrio entre alcance, duraci\xF3n y da\xF1o sostenido."
+  icon: {fileID: -6454969007074664543, guid: 08c1442e4f37e4ef184045f34227d680, type: 3}
+  damage: 2
+  duration: 12
