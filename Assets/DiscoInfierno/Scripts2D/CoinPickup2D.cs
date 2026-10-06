@@ -12,7 +12,7 @@ public class CoinPickup2D : MonoBehaviour
 
     [Header("Recolección automática")]
     [Tooltip("Tiempo que la moneda permanece en el suelo después de terminar su caída.")]
-    [SerializeField, Min(0f)] float autoCollectDelay = 1.5f;
+    [SerializeField, Min(0f)] float autoCollectDelay = 0.9f;
     [SerializeField, Min(0.1f)] float playerSearchRetryDelay = 0.5f;
 
     CircleCollider2D pickupCollider;
@@ -32,6 +32,9 @@ public class CoinPickup2D : MonoBehaviour
 
     public void Initialize(Vector3 landingPosition, Vector3 finalScale, float delay)
     {
+        if (GameController.Instance != null)
+            autoCollectDelay = GameController.Instance.CoinAutoCollectDelay;
+
         restingScale = finalScale;
         pickupCollider.enabled = false;
         transform.localScale = Vector3.zero;

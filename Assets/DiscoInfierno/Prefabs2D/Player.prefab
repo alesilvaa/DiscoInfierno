@@ -1672,6 +1672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player2D
   isAlive: 1
   blocked: 0
+  statsDefinition: {fileID: 11400000, guid: 11fa1559c4e4342fe91a6e96bdee466a, type: 2}
   damage: 2
   maxHealth: 100
   currentHealth: 100
@@ -1692,7 +1693,7 @@ MonoBehaviour:
   cameraSafeArea: {x: 0.42, y: 0.34}
   enableOutOfBoundsFall: 1
   gridBounds: {fileID: 0}
-  outOfBoundsPadding: 0.5
+  outOfBoundsPadding: 1.25
   fallVisualRoot: {fileID: 0}
   fallDuration: 0.48
   fallEndScale: 0.06

@@ -16,5 +16,9 @@ MonoBehaviour:
   displayName: "Guada\xF1a"
   description: "Golpes pesados de mayor da\xF1o, con una duraci\xF3n m\xE1s corta."
   icon: {fileID: 7763377582369790581, guid: 36d5885b7bb5b407ca73c43def98016b, type: 3}
+  rarity: 3
   damage: 3
   duration: 7
+  orbitRadius: 2.65
+  orbitDegreesPerSecond: 220
+  hitCooldown: 0.48

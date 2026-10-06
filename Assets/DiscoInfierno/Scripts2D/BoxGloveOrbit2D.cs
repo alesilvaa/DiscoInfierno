@@ -92,6 +92,9 @@ public class BoxGloveOrbit2D : MonoBehaviour, IPlayerWeapon2D
             damage = Mathf.Max(1, definition.Damage);
             if (definition.Duration > 0f)
                 activeDuration = definition.Duration;
+            orbitRadius = definition.OrbitRadius;
+            orbitDegreesPerSecond = definition.OrbitDegreesPerSecond;
+            hitCooldownPerEnemy = definition.HitCooldown;
         }
 
         Activate();

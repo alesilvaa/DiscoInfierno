@@ -22,6 +22,21 @@ public sealed class PlayerWeaponInventory2D : MonoBehaviour
     public void RefreshCatalog()
     {
         availableWeapons.RemoveAll(item => item == null);
+
+        GameDatabase database = GameController.Instance != null
+            ? GameController.Instance.Database
+            : null;
+        if (database != null)
+        {
+            IReadOnlyList<WeaponData> databaseWeapons = database.Weapons;
+            for (int i = 0; i < databaseWeapons.Count; i++)
+            {
+                WeaponData weapon = databaseWeapons[i];
+                if (weapon != null && !availableWeapons.Contains(weapon))
+                    availableWeapons.Add(weapon);
+            }
+        }
+
         if (!loadWeaponsFromResources)
             return;
 

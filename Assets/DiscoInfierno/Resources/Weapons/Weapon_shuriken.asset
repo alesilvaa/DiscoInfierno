@@ -16,5 +16,9 @@ MonoBehaviour:
   displayName: Shuriken
   description: "Equilibrio entre alcance, duraci\xF3n y da\xF1o sostenido."
   icon: {fileID: -6454969007074664543, guid: 08c1442e4f37e4ef184045f34227d680, type: 3}
+  rarity: 2
   damage: 2
   duration: 12
+  orbitRadius: 2.8
+  orbitDegreesPerSecond: 300
+  hitCooldown: 0.32

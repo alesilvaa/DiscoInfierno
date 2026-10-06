@@ -694,6 +694,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb410f71091d8472c88814d5f3e97063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle2D
+  enemyId: obstacle_basic
+  enemyDefinition: {fileID: 11400000, guid: 0561c68f18468440aa7dd098aa12e5c6, type: 2}
   bounceMaterial: {fileID: 6200000, guid: d4e5f6478901a2b3c4d5e6f708192031, type: 2}
   facesRoot: {fileID: 2265267390249468897}
   defaultFaceName: 1

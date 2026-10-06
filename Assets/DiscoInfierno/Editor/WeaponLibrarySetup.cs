@@ -188,7 +188,7 @@ public static class WeaponLibrarySetup
             serializedPlayer.FindProperty("cameraSafeArea").vector2Value =
                 new Vector2(0.42f, 0.34f);
             serializedPlayer.FindProperty("enableOutOfBoundsFall").boolValue = true;
-            serializedPlayer.FindProperty("outOfBoundsPadding").floatValue = 0.5f;
+            serializedPlayer.FindProperty("outOfBoundsPadding").floatValue = 1.25f;
             serializedPlayer.FindProperty("fallDuration").floatValue = 0.48f;
             serializedPlayer.FindProperty("fallEndScale").floatValue = 0.06f;
             serializedPlayer.ApplyModifiedPropertiesWithoutUndo();

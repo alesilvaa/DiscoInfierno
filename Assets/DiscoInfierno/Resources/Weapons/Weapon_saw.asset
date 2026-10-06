@@ -17,5 +17,9 @@ MonoBehaviour:
   description: "Arma de contacto r\xE1pida que castiga a los enemigos durante la
     \xF3rbita."
   icon: {fileID: -1198124303406445919, guid: 653b9849623b44ce8a0a8beea780e5ae, type: 3}
+  rarity: 2
   damage: 2
   duration: 8
+  orbitRadius: 2.35
+  orbitDegreesPerSecond: 320
+  hitCooldown: 0.22

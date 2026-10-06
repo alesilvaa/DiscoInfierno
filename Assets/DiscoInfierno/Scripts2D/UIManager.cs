@@ -697,7 +697,8 @@ public class UIManager : MonoBehaviour
         if (equipmentWeaponTitle != null)
             equipmentWeaponTitle.text = selectedWeapon.DisplayName;
         if (equipmentWeaponDescription != null)
-            equipmentWeaponDescription.text = selectedWeapon.Description;
+            equipmentWeaponDescription.text =
+                $"{selectedWeapon.Rarity}\n{selectedWeapon.Description}";
 
         SetEquipmentText("Text_+50", $"+{selectedWeapon.Damage}");
         SetEquipmentText(

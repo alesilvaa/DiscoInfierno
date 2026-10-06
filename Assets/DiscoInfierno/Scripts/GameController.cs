@@ -1,10 +1,17 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
+
+    [Header("Configuración central")]
+    [Tooltip("Base de datos de balance. Si queda vacía se carga Resources/Config/GameDatabase.")]
+    [SerializeField] GameDatabase database;
+    [Tooltip("Configuración del nivel. Si queda vacía se resuelve usando el nombre de la escena.")]
+    [SerializeField] LevelData levelData;
 
     [Header("Progreso del nivel")]
     [SerializeField, Min(1)] int cubesRequiredForExit = 5;
@@ -21,12 +28,19 @@ public class GameController : MonoBehaviour
     [Header("Estado de partida")]
     [SerializeField] Player2D player;
     [SerializeField] bool isGameOver;
+    [SerializeField] bool isCompletingLevel;
 
     public int DestroyedCubes => destroyedCubes;
     public int CubesRequiredForExit => cubesRequiredForExit;
     public bool ExitUnlocked => exitUnlocked;
     public int Coins => coins;
     public bool IsGameOver => isGameOver;
+    public bool IsCompletingLevel => isCompletingLevel;
+    public GameDatabase Database => database;
+    public LevelData ActiveLevel => levelData;
+    public float CoinAutoCollectDelay => database != null
+        ? database.CoinAutoCollectDelay
+        : 0.9f;
     public event Action<int, int> KillCountChanged;
     public event Action<int> CoinsChanged;
     public event Action GameOverTriggered;
@@ -40,10 +54,12 @@ public class GameController : MonoBehaviour
         }
 
         Instance = this;
+        ResolveConfiguration();
         if (grid == null)
             grid = FindFirstObjectByType<PrefabGrid2D>();
         if (player == null)
             player = FindFirstObjectByType<Player2D>();
+        ApplyLevelConfiguration();
     }
 
     void Start()
@@ -51,6 +67,7 @@ public class GameController : MonoBehaviour
         destroyedCubes = 0;
         exitUnlocked = false;
         isGameOver = false;
+        isCompletingLevel = false;
         coins = Mathf.Max(0, startingCoins);
         BindPlayer();
         grid?.LockExit();
@@ -78,6 +95,30 @@ public class GameController : MonoBehaviour
 
         player.Died -= HandlePlayerDied;
         player.Died += HandlePlayerDied;
+    }
+
+    void ResolveConfiguration()
+    {
+        if (database == null)
+            database = Resources.Load<GameDatabase>("Config/GameDatabase");
+
+        if (levelData == null && database != null)
+            levelData = database.FindLevelForScene(SceneManager.GetActiveScene().name);
+    }
+
+    void ApplyLevelConfiguration()
+    {
+        if (levelData == null)
+            return;
+
+        cubesRequiredForExit = levelData.CubesRequiredForExit;
+        startingCoins = levelData.StartingCoins;
+
+        if (player != null)
+        {
+            player.ApplyStats(levelData.PlayerStats);
+            player.SetOutOfBoundsPadding(levelData.OutOfBoundsPadding);
+        }
     }
 
     void HandlePlayerDied()
@@ -121,6 +162,45 @@ public class GameController : MonoBehaviour
             inventory = player.gameObject.AddComponent<PlayerWeaponInventory2D>();
 
         return inventory.Equip(definition);
+    }
+
+    public void ConfigureEnemy(Obstacle2D enemy)
+    {
+        if (enemy == null)
+            return;
+
+        EnemyData definition = levelData != null
+            ? levelData.DefaultEnemy
+            : null;
+        if (definition == null && database != null)
+            definition = database.FindEnemy("obstacle_basic");
+        if (definition != null)
+            enemy.ApplyDefinition(definition);
+    }
+
+    public bool TryCompleteLevel()
+    {
+        if (isGameOver || isCompletingLevel || !exitUnlocked)
+            return false;
+
+        ResolveConfiguration();
+        LevelData nextLevel = database != null
+            ? database.GetNextLevel(levelData)
+            : null;
+        string nextScene = nextLevel != null
+            ? nextLevel.SceneName
+            : levelData != null ? levelData.NextSceneName : string.Empty;
+
+        if (string.IsNullOrWhiteSpace(nextScene))
+        {
+            Debug.LogWarning(
+                $"GameController: el nivel '{SceneManager.GetActiveScene().name}' no tiene un siguiente nivel configurado.",
+                this);
+            return false;
+        }
+
+        isCompletingLevel = SceneTransitionManager.GetOrCreate().LoadScene(nextScene);
+        return isCompletingLevel;
     }
 
     public void RegisterDestroyedCube()

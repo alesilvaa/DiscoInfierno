@@ -8,6 +8,8 @@ public class Player2D : MonoBehaviour
     [SerializeField] bool blocked;
 
     [Header("Stats")]
+    [Tooltip("Perfil base. El LevelData activo puede reemplazarlo al iniciar la escena.")]
+    [SerializeField] PlayerStatsData statsDefinition;
     [Tooltip("Daño que aplica el Player en cada impacto válido.")]
     [SerializeField, Min(1)] int damage = 2;
     [SerializeField, Min(1)] int maxHealth = 100;
@@ -48,7 +50,7 @@ public class Player2D : MonoBehaviour
     [Tooltip("Grid que define el área jugable. Si queda vacío se busca automáticamente.")]
     [SerializeField] PrefabGrid2D gridBounds;
     [Tooltip("Margen adicional fuera de la última celda antes de considerar la caída.")]
-    [SerializeField, Min(0f)] float outOfBoundsPadding = 0.35f;
+    [SerializeField, Min(0f)] float outOfBoundsPadding = 1.25f;
     [Tooltip("Raíz visual que se achica. Si queda vacía se anima el Player completo.")]
     [SerializeField] Transform fallVisualRoot;
     [SerializeField, Min(0.05f)] float fallDuration = 0.48f;
@@ -73,6 +75,7 @@ public class Player2D : MonoBehaviour
     public int Income => income;
     public bool IsDamageInvulnerable => Time.time < nextDamageTime;
     public bool IsFalling => isFalling;
+    public PlayerStatsData StatsDefinition => statsDefinition;
 
     public event System.Action<int, int> HealthChanged;
     public event System.Action StatsChanged;
@@ -273,6 +276,30 @@ public class Player2D : MonoBehaviour
             Die();
         else
             HealthChanged?.Invoke(currentHealth, maxHealth);
+    }
+
+    public void ApplyStats(PlayerStatsData definition, bool restoreHealth = true)
+    {
+        if (definition == null)
+            return;
+
+        statsDefinition = definition;
+        damage = definition.Damage;
+        maxHealth = definition.MaxHealth;
+        income = definition.Income;
+        damageInvulnerabilityDuration = definition.DamageInvulnerabilityDuration;
+        currentHealth = restoreHealth
+            ? maxHealth
+            : Mathf.Clamp(currentHealth, 0, maxHealth);
+        isAlive = currentHealth > 0;
+        RefreshHealthSlider();
+        HealthChanged?.Invoke(currentHealth, maxHealth);
+        StatsChanged?.Invoke();
+    }
+
+    public void SetOutOfBoundsPadding(float padding)
+    {
+        outOfBoundsPadding = Mathf.Max(0f, padding);
     }
 
     public void Heal(int amount)

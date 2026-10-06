@@ -51,6 +51,7 @@ public class SceneTransitionManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         BuildOverlay();
         SceneManager.sceneLoaded += HandleSceneLoaded;
+        SceneManager.sceneUnloaded += HandleSceneUnloaded;
     }
 
     public void ReloadActiveScene(
@@ -76,9 +77,54 @@ public class SceneTransitionManager : MonoBehaviour
                 StartCoroutine(LoadSceneAsync(SceneManager.GetActiveScene().buildIndex)));
     }
 
+    public bool LoadScene(
+        string sceneName,
+        float fadeOutDuration = DefaultFadeOutDuration,
+        float fadeInDuration = DefaultFadeInDuration)
+    {
+        if (isTransitioning || string.IsNullOrWhiteSpace(sceneName))
+            return false;
+
+        if (!Application.CanStreamedLevelBeLoaded(sceneName))
+        {
+            Debug.LogError(
+                $"SceneTransitionManager: la escena '{sceneName}' no está habilitada en Build Settings.",
+                this);
+            return false;
+        }
+
+        isTransitioning = true;
+        pendingFadeInDuration = Mathf.Max(0.01f, fadeInDuration);
+        Time.timeScale = 1f;
+        overlayGroup.blocksRaycasts = true;
+        overlayGroup.interactable = true;
+
+        transitionTween?.Kill();
+        transitionTween = overlayGroup
+            .DOFade(1f, Mathf.Max(0.01f, fadeOutDuration))
+            .SetEase(Ease.InOutSine)
+            .SetUpdate(true)
+            .SetTarget(this)
+            .OnComplete(() => StartCoroutine(LoadSceneAsync(sceneName)));
+        return true;
+    }
+
     IEnumerator LoadSceneAsync(int buildIndex)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(buildIndex);
+        if (operation == null)
+        {
+            isTransitioning = false;
+            yield break;
+        }
+
+        while (!operation.isDone)
+            yield return null;
+    }
+
+    IEnumerator LoadSceneAsync(string sceneName)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         if (operation == null)
         {
             isTransitioning = false;
@@ -113,6 +159,14 @@ public class SceneTransitionManager : MonoBehaviour
                 overlayGroup.interactable = false;
                 isTransitioning = false;
             });
+    }
+
+    void HandleSceneUnloaded(Scene _)
+    {
+        // Elimina tweens que apuntaban a transforms de la escena anterior
+        // antes de que DOTween vuelva a actualizarlos en el siguiente frame.
+        DOTween.KillAll(false);
+        transitionTween = null;
     }
 
     void BuildOverlay()
@@ -171,6 +225,7 @@ public class SceneTransitionManager : MonoBehaviour
     {
         transitionTween?.Kill();
         SceneManager.sceneLoaded -= HandleSceneLoaded;
+        SceneManager.sceneUnloaded -= HandleSceneUnloaded;
         if (Instance == this)
             Instance = null;
     }

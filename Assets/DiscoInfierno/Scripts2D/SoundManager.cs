@@ -43,6 +43,9 @@ public class SoundManager : MonoBehaviour
         }
 
         Instance = this;
+        // En Edit Mode vive organizado bajo [SYSTEMS]. Para persistir entre
+        // niveles Unity exige que sea raíz, por eso se desacopla sólo al jugar.
+        transform.SetParent(null, true);
         DontDestroyOnLoad(gameObject);
         ResolveSources();
         StopAndConfigureAllSources();

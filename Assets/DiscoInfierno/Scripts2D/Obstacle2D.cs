@@ -9,6 +9,10 @@ public class Obstacle2D : MonoBehaviour
 {
     const string ObstacleTag = "Obstacle";
 
+    [Header("Definición")]
+    [SerializeField] string enemyId = "obstacle_basic";
+    [SerializeField] EnemyData enemyDefinition;
+
     [SerializeField] PhysicsMaterial2D bounceMaterial;
 
     [Header("Caras")]
@@ -94,12 +98,18 @@ public class Obstacle2D : MonoBehaviour
     public int CurrentHealth => currentHealth;
     public float HealthNormalized => maxHealth <= 0 ? 0f : currentHealth / (float)maxHealth;
     public bool IsDying => isDying;
+    public EnemyData Definition => enemyDefinition;
 
     public event System.Action<int, int> HealthChanged;
     public event System.Action<Obstacle2D> Died;
 
     void Awake()
     {
+        if (GameController.Instance != null)
+            GameController.Instance.ConfigureEnemy(this);
+        else if (enemyDefinition != null)
+            ApplyDefinition(enemyDefinition);
+
         EnsureTag();
         ApplyBounceMaterial();
         CacheFaces();
@@ -116,6 +126,23 @@ public class Obstacle2D : MonoBehaviour
         if (damageTextTemplate != null)
             damageTextTemplate.gameObject.SetActive(false);
         ShowDefaultFace();
+    }
+
+    public void ApplyDefinition(EnemyData definition, bool restoreHealth = true)
+    {
+        if (definition == null)
+            return;
+
+        enemyDefinition = definition;
+        enemyId = definition.Id;
+        maxHealth = definition.MaxHealth;
+        contactDamage = definition.ContactDamage;
+        hitCooldown = definition.HitCooldown;
+        coinsDroppedOnDeath = definition.CoinsDropped;
+        if (restoreHealth)
+            currentHealth = maxHealth;
+        else
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
     }
 
     void OnValidate()
