@@ -60,7 +60,7 @@ public class Obstacle2D : MonoBehaviour
 
     [Header("Drop de monedas")]
     [SerializeField] Sprite coinSprite;
-    [SerializeField, Min(0)] int coinsDroppedOnDeath = 3;
+    [SerializeField, Min(0)] int coinsDroppedOnDeath = 1;
     [SerializeField, Min(0f)] float coinScatterRadius = 1.35f;
     [SerializeField, Min(0.01f)] float coinWorldScale = 0.65f;
     [SerializeField, Min(0f)] float coinSpawnStagger = 0.06f;

@@ -7,14 +7,19 @@ public class CoinPickup2D : MonoBehaviour
 {
     [SerializeField, Min(0.05f)] float scatterDuration = 0.42f;
     [SerializeField, Min(0f)] float jumpPower = 0.8f;
-    [SerializeField, Min(0.01f)] float collectDuration = 0.16f;
     [SerializeField, Min(0f)] float idlePulseAmount = 0.08f;
     [SerializeField, Min(0.1f)] float idlePulseDuration = 0.55f;
+
+    [Header("Recolección automática")]
+    [Tooltip("Tiempo que la moneda permanece en el suelo después de terminar su caída.")]
+    [SerializeField, Min(0f)] float autoCollectDelay = 1.5f;
+    [SerializeField, Min(0.1f)] float playerSearchRetryDelay = 0.5f;
 
     CircleCollider2D pickupCollider;
     SpriteRenderer coinRenderer;
     Sequence movementSequence;
     Sequence idleSequence;
+    Tween autoCollectTween;
     bool collected;
     Vector3 restingScale;
 
@@ -65,6 +70,7 @@ public class CoinPickup2D : MonoBehaviour
             {
                 pickupCollider.enabled = true;
                 StartIdleAnimation();
+                ScheduleAutoCollect(autoCollectDelay);
             });
     }
 
@@ -91,65 +97,82 @@ public class CoinPickup2D : MonoBehaviour
         if (collected || player == null || !player.IsAlive)
             return;
 
+        BeginCollection(player);
+    }
+
+    void ScheduleAutoCollect(float delay)
+    {
+        autoCollectTween?.Kill();
+        autoCollectTween = DOVirtual.DelayedCall(
+                Mathf.Max(0f, delay),
+                TryAutoCollect)
+            .SetTarget(this);
+    }
+
+    void TryAutoCollect()
+    {
+        autoCollectTween = null;
+        if (collected)
+            return;
+
+        Player2D player = FindFirstObjectByType<Player2D>();
+        if (player == null || !player.IsAlive)
+        {
+            ScheduleAutoCollect(playerSearchRetryDelay);
+            return;
+        }
+
+        BeginCollection(player);
+    }
+
+    void BeginCollection(Player2D player)
+    {
+        if (collected || player == null || !player.IsAlive)
+            return;
+
         collected = true;
         pickupCollider.enabled = false;
         movementSequence?.Kill();
         idleSequence?.Kill();
+        autoCollectTween?.Kill();
+        autoCollectTween = null;
         SoundManager.Instance?.PlayCoinPickup();
 
         int collectedValue = Mathf.Max(1, player.Income);
         Sprite collectedSprite = coinRenderer != null ? coinRenderer.sprite : null;
-        Vector3 playerPosition = player.transform.position;
-        Vector3 approachPoint = playerPosition +
-            (Vector3)(Random.insideUnitCircle.normalized * 0.45f);
+        Vector3 coinWorldPosition = transform.position;
+        System.Action creditCoin = () =>
+            GameController.Instance?.AddCoins(collectedValue);
 
-        movementSequence = DOTween.Sequence()
-            .SetTarget(this)
-            .Append(
-                transform
-                    .DOPath(
-                        new[] { approachPoint, playerPosition },
-                        collectDuration,
-                        PathType.CatmullRom)
-                    .SetEase(Ease.InBack))
-            .Join(
-                transform.DOScale(restingScale * 0.18f, collectDuration)
-                    .SetEase(Ease.InBack))
-            .Join(
-                transform
-                    .DORotate(new Vector3(0f, 0f, 420f), collectDuration, RotateMode.FastBeyond360)
-                    .SetEase(Ease.InQuad))
-            .OnComplete(() =>
-            {
-                System.Action creditCoin = () =>
-                    GameController.Instance?.AddCoins(collectedValue);
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.PlayCoinFlyToCounter(
+                collectedSprite,
+                coinWorldPosition,
+                creditCoin);
+        }
+        else
+        {
+            creditCoin();
+        }
 
-                if (UIManager.Instance != null)
-                {
-                    UIManager.Instance.PlayCoinFlyToCounter(
-                        collectedSprite,
-                        playerPosition,
-                        creditCoin);
-                }
-                else
-                {
-                    creditCoin();
-                }
-
-                Destroy(gameObject);
-            });
+        // PlayCoinFlyToCounter crea inmediatamente su propio icono sobre el
+        // Canvas usando esta posición, por lo que el objeto del mundo ya no es necesario.
+        Destroy(gameObject);
     }
 
     void OnDestroy()
     {
         movementSequence?.Kill();
         idleSequence?.Kill();
+        autoCollectTween?.Kill();
     }
 
     void OnValidate()
     {
         scatterDuration = Mathf.Max(0.05f, scatterDuration);
-        collectDuration = Mathf.Max(0.01f, collectDuration);
         idlePulseDuration = Mathf.Max(0.1f, idlePulseDuration);
+        autoCollectDelay = Mathf.Max(0f, autoCollectDelay);
+        playerSearchRetryDelay = Mathf.Max(0.1f, playerSearchRetryDelay);
     }
 }

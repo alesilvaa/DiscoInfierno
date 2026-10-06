@@ -1396,6 +1396,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   income: 1
+  damageInvulnerabilityDuration: 0.4
   healthSlider: {fileID: 7053034173515213133}
   hideHealthSliderHandle: 1
   sortingLayerName: World

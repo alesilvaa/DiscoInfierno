@@ -14,6 +14,10 @@ public class Player2D : MonoBehaviour
     [Tooltip("Valor base de ingresos del Player, preparado para futuras mejoras.")]
     [SerializeField, Min(0)] int income = 1;
 
+    [Header("Recepción de daño")]
+    [Tooltip("Evita que múltiples eventos físicos del mismo rebote descuenten vida varias veces casi simultáneamente.")]
+    [SerializeField, Min(0f)] float damageInvulnerabilityDuration = 0.4f;
+
     [Header("Health UI")]
     [Tooltip("Slider World Space hijo del Player. Si queda vacío se busca automáticamente.")]
     [SerializeField] Slider healthSlider;
@@ -38,6 +42,7 @@ public class Player2D : MonoBehaviour
 
     Transform defaultFace;
     Vector3 cameraFollowVelocity;
+    float nextDamageTime;
 
     public bool IsAlive => isAlive;
     public bool CanSling => isAlive && !blocked;
@@ -46,6 +51,7 @@ public class Player2D : MonoBehaviour
     public int CurrentHealth => currentHealth;
     public float HealthNormalized => maxHealth <= 0 ? 0f : currentHealth / (float)maxHealth;
     public int Income => income;
+    public bool IsDamageInvulnerable => Time.time < nextDamageTime;
 
     public event System.Action<int, int> HealthChanged;
     public event System.Action StatsChanged;
@@ -125,6 +131,7 @@ public class Player2D : MonoBehaviour
         maxHealth = Mathf.Max(1, maxHealth);
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         income = Mathf.Max(0, income);
+        damageInvulnerabilityDuration = Mathf.Max(0f, damageInvulnerabilityDuration);
         cameraSmoothTime = Mathf.Max(0.01f, cameraSmoothTime);
         if (healthSlider != null)
             healthSlider.value = HealthNormalized;
@@ -132,9 +139,10 @@ public class Player2D : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        if (!isAlive || amount <= 0)
+        if (!isAlive || amount <= 0 || IsDamageInvulnerable)
             return;
 
+        nextDamageTime = Time.time + damageInvulnerabilityDuration;
         currentHealth = Mathf.Max(0, currentHealth - amount);
         RefreshHealthSlider();
         if (currentHealth <= 0)
@@ -209,6 +217,7 @@ public class Player2D : MonoBehaviour
             if (currentHealth <= 0)
                 currentHealth = maxHealth;
             blocked = false;
+            nextDamageTime = 0f;
             RefreshHealthSlider();
             HealthChanged?.Invoke(currentHealth, maxHealth);
         }

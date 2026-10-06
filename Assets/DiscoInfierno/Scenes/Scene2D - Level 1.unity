@@ -4763,9 +4763,9 @@ MonoBehaviour:
   rebotadorTemplate: {fileID: 1750401529}
   rebotadorCount: 1
   teletransportTemplate: {fileID: 89726164}
-  teletransportPairCount: 1
+  teletransportPairCount: 0
   minimumTeletransportCellDistance: 4
-  explosiveCubeCount: 3
+  explosiveCubeCount: 0
   sortByRow: 1
   sortingLayerName: World
   sortingUnitsPerWorldUnit: 100
@@ -4989,7 +4989,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1491632954}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -7941,7 +7941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5008093413381329417, guid: 73fbd0eedca9e4ad6916ab604afa84aa, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8368668104731116349, guid: 73fbd0eedca9e4ad6916ab604afa84aa, type: 3}
       propertyPath: m_LocalPosition.x

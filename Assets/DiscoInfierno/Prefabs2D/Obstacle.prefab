@@ -720,7 +720,7 @@ MonoBehaviour:
   damageTextFadeDelay: 0.2
   damageTextPunchScale: 1.2
   coinSprite: {fileID: -5122786757355938225, guid: a49cef68f9f364e429cab82dc7ac9395, type: 3}
-  coinsDroppedOnDeath: 3
+  coinsDroppedOnDeath: 1
   coinScatterRadius: 1.35
   coinWorldScale: 0.65
   coinSpawnStagger: 0.06
